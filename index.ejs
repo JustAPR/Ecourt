@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-box">
+        <h2><img src="cc.png">Login</h2>
+        <br>
+        <div id="er" style="color: red;"><%= dols %></div>
+        <form action="/login" method="POST" id="login-form">
+          <div class="user-box">
+            <input type="text" name="mobile" id="mobileNumber" required>
+            <label>Mobile</label><br/><span id="errord" style="color: red;"></span>
+          </div>
+          <div class="user-box">
+            <input type="password" name="pas" required>
+            <label>Password</label>
+          </div>
+          <input id="submit-button" type="submit" value="Login" class="a" disabled=""><a href="signup.hmtl" style="color:aqua;padding-left: 150px">SignUp</a>
+        </form>
+        <br>
+        <br>
+        <a href="fg.html" style="color:aqua;">Forgot Password?</a>
+      </div>
+</body>
+<script>
+  const mobileInput = document.getElementById('mobileNumber');
+  const submitButton = document.getElementById('submit-button');
+  const errorDisplay = document.getElementById('errord');
+
+  mobileInput.addEventListener('input', function () {
+      const mobileValue = this.value;
+      const mobileLength = mobileValue.length;
+      if (/^\d+$/.test(mobileValue) && mobileLength === 10) {
+          errorDisplay.textContent = '';
+          submitButton.removeAttribute('disabled');
+      } else if(mobileLength === 0) {
+          errorDisplay.textContent = '';
+          submitButton.setAttribute('disabled', 'disabled');
+      }
+      else{
+        errorDisplay.textContent = 'Invalid mobile number';
+        submitButton.setAttribute('disabled', 'disabled');
+      }
+  });
+</script>
+</html>
