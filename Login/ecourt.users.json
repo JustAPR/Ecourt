@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "65a015ae4ceab110993efb65"
+  },
+  "username": "admin",
+  "email": "admin@admin.com",
+  "password": "admin",
+  "type": "0"
+},
+{
+  "_id": {
+    "$oid": "65a015ca4ceab110993efb67"
+  },
+  "username": "user1",
+  "email": "user1@gmail.com",
+  "password": "123456",
+  "type": "1"
+},
+{
+  "_id": {
+    "$oid": "65a015e14ceab110993efb69"
+  },
+  "username": "lawyer1",
+  "email": "lawyer1@gmail.com",
+  "password": "123456",
+  "type": "2"
+},
+{
+  "_id": {
+    "$oid": "65a0160b4ceab110993efb6e"
+  },
+  "username": "judge",
+  "email": "judge@gmail.com",
+  "password": "123456",
+  "type": "3"
+}]

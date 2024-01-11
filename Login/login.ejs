@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login And Signin</title>
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="wrapper">
+        <span class="bganimate"></span>
+        <span class="bganimate2"></span>
+        <div class="formbox login">
+            <h2 class="animation" style="--i:0; --j:21;">Login</h2>
+            <div id="er" class="inputbox animation" style="color: red;"><%= dols %></div>
+            <form action="/login" method="POST">
+                <div class="inputbox animation" style="--i:1; --j:22;">
+                    <input type="text" name="username" required>
+                    <label>Username</label>
+                    <i class='bx bxs-user'></i>
+                </div>
+
+                <div class="inputbox animation" style="--i:2; --j:23;">
+                    <input  type="password" name="password" required>
+                    <label>Password</label>
+                    <i class='bx bxs-lock' ></i>
+                </div>
+                <button type="submit" class="btn animation" style="--i:3; --j:24;">Login</button>
+                <div class="logreg_link animation" style="--i:4; --j:25;">
+                    <p>Don't have an account? <a href="#" class="registerlink">SignUp</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="infotext login">
+            <h2 class="animation" style="--i:0;  --j:20;">Welcome back!</h2>
+            <p class="animation" style="--i:1;  --j:21;"></p>
+        </div>
+
+        <div class="formbox register">
+            <h2 class="animation" style="--i:17; --j:0; padding: top 50px;" >Sign up</h2>
+            <form action="/signup" method="POST">
+                <div class="inputbox animation" style="--i:18; --j:1;">
+                    <input type="text" name="username"required>
+                    <label>Username</label>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="inputbox animation" style="--i:19; --j:2;">
+                    <input type="text" name="email" required>
+                    <label>Email</label>
+                    <i class='bx bxs-envelope' ></i>
+                </div>
+                <div class="inputbox animation" style="--i:20; --j:3;">
+                    <input  type="password" name="password" required>
+                    <label>Password</label>
+                    <i class='bx bxs-lock' ></i>
+                </div>
+                    <div class="inputbox animation" style="--i:20; --j:3;">
+                        <select name="userType" required>
+                            <option value="user">User</option>
+                            <option value="lawyer">Lawyer</option>
+                        </select>
+                    </div>
+                
+                <button type="submit" class="btn animation" style="--i:21; --j:4;">Sign up</button>
+                <div class="logreg_link animation" style="--i:22; --j:5;">
+                    <p>Already have an account? <a href="#" class="loginlink">Login</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="infotext register">
+            <h2 class="animation" style="--i:1; --j:0;">Create Account</h2>
+            <p class="animation" style="--i:18; --j:1;"><div id="er" class="inputbox animation" style="color: red;"><%= mol %></div></p>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        <% if (showSignup) { %>
+            document.querySelector('.wrapper').classList.add('active');
+        <% } else { %>
+            document.querySelector('.wrapper').classList.remove('active');
+        <% } %>
+    });
+</script>
+</html>
