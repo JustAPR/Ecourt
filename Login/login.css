@@ -1,0 +1,297 @@
+*{
+    margin: 0;
+    padding: 0 ;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background: #081b29; */
+    background: #000000;
+}
+.wrapper{
+    position: relative;
+    width: 750px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid #0ef;
+    box-shadow:0 0 25px #0ef;
+    overflow: hidden;
+}
+.wrapper .formbox{
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+.wrapper .formbox.login{
+    left: 0;
+    padding: 0 60px 0 40px;
+ 
+}
+.wrapper .formbox.login .animation{
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+
+}
+.wrapper.active .formbox.login .animation{
+    transform: translateX(-120%);  
+    opacity: 0;
+    filter: blur(10px);
+    transition-delay: calc(.1s * var(--i));
+    
+}
+.wrapper .formbox.register{
+    right: 0;
+    padding: 0 40px 0 60px;
+    pointer-events: none;
+    /* display: none; */
+}
+.wrapper.active .formbox.register{
+    pointer-events: auto ;
+}
+.wrapper .formbox.register .animation{
+    transform: translateX(120%);
+    opacity: 0;
+    filter: blur(10px);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+
+
+}
+.wrapper.active .formbox.register .animation{
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition-delay: calc(.1s * var(--i));
+}
+.formbox h2 {
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+}
+.formbox .inputbox{
+    position: relative;
+    width: 100%;
+    height: 50px;   
+    margin: 25px 0;
+}
+.inputbox input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #fff;
+    padding-right: 23px;
+    transition: .5s;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+
+}
+.inputbox input:focus,
+.inputbox input:valid{
+   border-bottom-color: #0ef;
+}
+
+.inputbox label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+.inputbox input:focus~label,
+.inputbox input:valid~label{
+    top: -5px;
+    color:#0ef
+}
+
+.inputbox i{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #fff;
+    transition: .5s;
+}
+.inputbox input:focus~i,
+.inputbox input:valid~i{
+    color: #0ef;
+}
+
+.btn{
+    position: relative;
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border: 2px solid #0ef;
+    outline: none;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.formbox .logreg_link{
+    font-size: 14.5px;
+    color: #fff;
+    text-align: center;
+    margin: 20px 0 10px;
+}
+.logreg_link p a{
+    color: #0ef;
+    /* text-decoration: none; */
+    font-weight: 600;
+}
+.logreg_link p a:hover {
+    text-decoration: underline;
+}
+.wrapper .infotext{
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    /* background: red; */
+    display:flex ;
+    flex-direction: column;
+    justify-content: center;
+}
+.wrapper .infotext.login{
+    left: 50%;
+    text-align: right;
+    padding: 0 40px 60px 150px;
+}
+
+.wrapper .infotext.login .animation{
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+
+
+}
+.wrapper.active .infotext.login .animation{
+    transform: translateX(120%);  
+    opacity: 0;
+    filter: blur(10px);
+    transition-delay: calc(.1s * var(--i));
+    
+}
+.wrapper .infotext.register{
+    left: 0;
+    text-align: left;
+    padding: 0 150px 60px 40px;
+    /* display: none; */
+    pointer-events: none;
+}
+.wrapper.active .infotext.register{
+    pointer-events: auto;
+}
+.wrapper .infotext.register .animation{
+    transform: translateX(-120%);
+    opacity: 0;
+    filter: blur(10px);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+
+}
+.wrapper.active .infotext.register .animation{
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition-delay: calc(.1s * var(--i));
+}
+.infotext h2{
+    font-size: 36px;
+    color:#fff ;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+.infotext p{
+    font-size: 16px;
+    color: #fff;
+}
+.wrapper .bganimate{
+    position: absolute;
+    top: -4px;
+    right: 0;
+    width: 850px;
+    height: 600px;
+    background: linear-gradient(45deg,#081b29, #0ef);
+    border-bottom: 3px solid #0ef;
+    transform:rotate(10deg) skewY(40deg) ;
+    transform-origin: bottom right;
+    transition: 1.5s ease;
+    transition-delay: .6s ;
+}
+.wrapper.active .bganimate{
+    
+    transform:rotate(0) skewY(0) ;
+    transition-delay: .5s;
+}
+.wrapper .bganimate2{
+    position: absolute;
+    top: 100%;
+    left: 250px;
+    width: 850px;
+    height:700px;
+    background: #081b29;
+    border-top: 3px solid #0ef;
+    transform:rotate(0) skewY(0) ;
+    transform-origin: bottom left;
+    transition: 1.5s ease ;
+    transition-delay: .5s ;
+}
+.wrapper.active .bganimate2{
+    
+    transform:rotate(-11deg) skewY(-41deg) ;
+    transition-delay: 1.2s ease;
+}
+:root {
+    --arrow-bg: rgba(255, 255, 255, 0.3);
+    --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+    --option-bg: rgb(255, 255, 255);
+    --select-bg: rgba(255, 255, 255, 0.2);
+  }
+
+option {
+    color: black;
+    background-color: white;
+  }
+select {
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    width: 18rem;
+    padding: 1rem 4rem 1rem 1rem;
+    background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+      linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+    color: #0ef;
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    &::-ms-expand {
+      display: none;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
