@@ -1,226 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
-  <title>E-Court Case Management</title>
-  <style>
-    /* Add any additional styles here */
-    #profileSection {
-      display: none; /* Hide profile section by default */
-      text-align: center; /* Center the content horizontally */
-      margin-top: 50px; /* Adjust the top margin for vertical centering */
-      border: 1px solid #ccc; /* Thin border around the profile section */
-      padding: 20px; /* Add padding for spacing */
-      border-radius: 8px; /* Optional: Add border-radius for rounded corners */
-    }
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <title>E-Court Case Management</title>
+    <style>
+      #profileSection {
+        display: none; /* Hide profile section by default */
+        text-align: center; /* Center the content horizontally */
+        margin-top: 50px; /* Adjust the top margin for vertical centering */
+        border: 1px solid #ccc; /* Thin border around the profile section */
+        padding: 20px; /* Add padding for spacing */
+        border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+      }
+  
+      #profile-photo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 10px auto;
+      }
+  
+      #editProfileSection {
+        display: none;
+        text-align: center;
+        margin-top: 50px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 8px;
+      }
+  
+      #documentsSection {
+        display: none;
+        text-align: center;
+        margin-top: 50px;
+      }
+  
+      #chatSection {
+        display: none;
+        margin-top: 50px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        height: 300px;
+        overflow-y: scroll;
+      }
+  
+      #chatMessages {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+  
+      .message {
+        margin-bottom: 10px;
+      }
+  
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+  
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+  
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
 
-    #profile-photo {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 10px auto;
-    }
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">E-Court Portal</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showAdvocateOptions()">Advocates</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#calendar" onclick="showCalendar()">Calendar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#messages" onclick="showChat()">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#documents" onclick="showDocuments()">Documents</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#profile" onclick="showProfile()">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-    #editProfileSection {
-      display: none;
-      text-align: center;
-      margin-top: 50px;
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-radius: 8px;
-    }
+    <!-- Content -->
+    <div class="container mt-4">
+      <div id="advocates">
+        <!-- Advocates List -->
+        <h2 id="advocateOptionsHeader" style="display: none;">Advocates</h2>
+        <ul id="advocateOptionsList" class="list-group" style="display: none;">
+          <li class="list-group-item"><a href="#">Supreme Court</a></li>
+          <li class="list-group-item">
+            <a href="#" onclick="showHighCourtOptions()">High Court</a>
+            <ul id="highCourtOptionsList" style="display: none;">
+              <li class="list-group-item"><a href="#">Allahabad High Court</a></li>
+            <li class="list-group-item"><a href="#">Andhra Pradesh High Court</a></li>
+            <li class="list-group-item"><a href="#">Bombay High Court</a></li>
+            <li class="list-group-item"><a href="#">Calcutta High Court</a></li>
+            <li class="list-group-item"><a href="#">Chhattisgarh High Court</a></li>
+            <li class="list-group-item"><a href="#">Delhi High Court</a></li>
+            <li class="list-group-item"><a href="#">Gauhati High Court</a></li>
+            <li class="list-group-item"><a href="#">Himachal Pradesh High Court</a></li>
+            <li class="list-group-item"><a href="#">Jammu & Kashmir High Court</a></li>
+            <li class="list-group-item"><a href="#">Jharkhand High Court</a></li>
+            <li class="list-group-item"><a href="#">Karnataka High Court</a></li>
+            <li class="list-group-item"><a href="#">Kerala High Court</a></li>
+            <li class="list-group-item"><a href="#">Madhya Pradesh High Court</a></li>
+            <li class="list-group-item"><a href="#">Madras High Court</a></li>
+            <li class="list-group-item"><a href="#">Manipur High Court</a></li>
+            <li class="list-group-item"><a href="#">Meghalaya High Court</a></li>
+            <li class="list-group-item"><a href="#">High Court of Orissa</a></li>
+            <li class="list-group-item"><a href="#">Patna High Court</a></li>
+            <li class="list-group-item"><a href="#">Punjab & Haryana High Court</a></li>
+            <li class="list-group-item"><a href="#">Rajasthan High Court</a></li>
+            <li class="list-group-item"><a href="#">Sikkim High Court</a></li>
+            <li class="list-group-item"><a href="#">Telangana High Court</a></li>
+            <li class="list-group-item"><a href="#">Tripura High Court</a></li>
+            <li class="list-group-item"><a href="#">Uttarakhand High Court</a></li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <a href="#" onclick="showDistrictCourtOptions()">District Court</a>
+            <ul id="districtCourtOptionsList" style="display: none;">
+              <li class="list-group-item">
+                <a href="#" onclick="showDistrictOptions('Arunachal Pradesh')">Arunachal Pradesh</a>
+                <ul id="arunachalPradeshDistrictOptions" style="display: none;">
+                  <li class="list-group-item"><a href="#">Anantapur</a></li>
+                  <li class="list-group-item"><a href="#">Chittoor</a></li>
+                  <li class="list-group-item"><a href="#">East Godavari</a></li>
+                  <!-- Add more districts as needed -->
+                </ul>
+              </li>
+              <!-- Add more states as needed -->
+              <li class="list-group-item"><a href="#">Assam</a></li>
+            <li class="list-group-item"><a href="#">Bihar</a></li>
+            <li class="list-group-item"><a href="#">Chhattisgarh</a></li>
+            <li class="list-group-item"><a href="#">Goa</a></li>
+            <li class="list-group-item"><a href="#">Gujarat</a></li>
+            <li class="list-group-item"><a href="#">Haryana</a></li>
+            <li class="list-group-item"><a href="#">Himachal Pradesh</a></li>
+            <li class="list-group-item"><a href="#">Jharkhand</a></li>
+            <li class="list-group-item"><a href="#">Karnataka</a></li>
+            <li class="list-group-item"><a href="#">Kerala</a></li>
+            <li class="list-group-item"><a href="#">Madhya Pradesh</a></li>
+            <li class="list-group-item"><a href="#">Maharashtra</a></li>
+            <li class="list-group-item"><a href="#">Manipur</a></li>
+            <li class="list-group-item"><a href="#">Meghalaya</a></li>
+            <li class="list-group-item"><a href="#">Mizoram</a></li>
+            <li class="list-group-item"><a href="#">Nagaland</a></li>
+            <li class="list-group-item"><a href="#">Odisha</a></li>
+            <li class="list-group-item"><a href="#">Punjab</a></li>
+            <li class="list-group-item"><a href="#">Rajasthan</a></li>
+            <li class="list-group-item"><a href="#">Sikkim</a></li>
+            <li class="list-group-item"><a href="#">Tamil Nadu</a></li>
+            <li class="list-group-item"><a href="#">Telangana</a></li>
+            <li class="list-group-item"><a href="#">Tripura</a></li>
+            <li class="list-group-item"><a href="#">Uttar Pradesh</a></li>
+            <li class="list-group-item"><a href="#">Uttarakhand</a></li>
+            <li class="list-group-item"><a href="#">West Bengal</a></li>
+            <li class="list-group-item"><a href="#">Jammu and Kashmir</a></li>
+            <li class="list-group-item"><a href="#">Ladakh</a></li>
+          </ul>
+          </li>
+        </ul>
+        <!-- Add a table or list of advocates with details -->
+      </div>
 
-    #documentsSection {
-      display: none;
-      text-align: center;
-      margin-top: 50px;
-    }
+      <div id="calendarSection" class="mt-4" style="display: none;">
+        <!-- Calendar Section -->
+        <div id="fullCalendar"></div>
+      </div>
+  
+      <div id="profileSection" class="mt-4">
+          <h2>User Profile</h2>
+          <img id="profile-photo" src="default-profile-photo.jpg" alt="Profile Photo">
+          <p id="profile-name">Name: John Doe</p>
+          <p id="profile-phone">Phone: 123-456-7890</p>
+          <p id="profile-place">Place: City, Country</p>
+          <p id="profile-email">Email: john.doe@example.com</p>
+          <p id="profile-languages">Languages: English, Spanish</p>
+          <!-- Settings and Logout Buttons -->
+          <button class="btn btn-success" onclick="showSettings()">Settings</button>
+          <button class="btn btn-danger" onclick="logout()">Logout</button>
+      </div>
+  
+      <!-- Edit Profile Section -->
+      <div id="editProfileSection" class="mt-4">
+          <h2>Edit Profile</h2>
+          <form>
+            <label for="edit-photo-input">Profile Photo:</label>
+            <input type="file" id="edit-photo-input">
+            <br>
+    
+            <label for="edit-name-input">Name:</label>
+            <input type="text" id="edit-name-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('name')">Save Name</button>
+            <br>
+    
+            <label for="edit-phone-input">Phone Number:</label>
+            <input type="text" id="edit-phone-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('phone')">Save Phone</button>
+            <br>
+    
+            <label for="edit-place-input">Place:</label>
+            <input type="text" id="edit-place-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('place')">Save Place</button>
+            <br>
+    
+            <label for="edit-email-input">Email:</label>
+            <input type="email" id="edit-email-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('email')">Save Email</button>
+            <br>
+    
+            <label for="edit-languages-input">Languages:</label>
+            <input type="text" id="edit-languages-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('languages')">Save Languages</button>
+            <br>
+    
+            <button class="btn btn-success" onclick="saveEdits()">Save</button>
+            <button class="btn btn-secondary" onclick="cancelEdits()">Back</button>
+            <button class="btn btn-danger" onclick="logout()">Logout</button>
+          </form>
+        </div>
+    
+        <!-- Documents Section -->
+        <div id="documentsSection" class="mt-4">
+          <h2>Documents</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Sl. No</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>File</th>
+                <th>Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example rows (replace with actual data) -->
+              <tr>
+                <td>1</td>
+                <td>Document 1</td>
+                <td>2024-01-15</td>
+                <td><a href="document1.pdf" target="_blank">Download</a></td>
+                <td>Comment 1</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Document 2</td>
+                <td>2024-01-16</td>
+                <td><a href="document2.pdf" target="_blank">Download</a></td>
+                <td>Comment 2</td>
+              </tr>
+              <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+        </div>
 
-    #chatSection {
-      display: none;
-      margin-top: 50px;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      height: 300px;
-      overflow-y: scroll;
-    }
+      <!-- Chat Section -->
+      <div id="chatSection" class="mt-4">
+        <h2>Chat</h2>
+        <ul id="chatMessages"></ul>
+        <input type="text" id="messageInput" placeholder="Type your message...">
+        <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+      </div>
 
-    #chatMessages {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .message {
-      margin-bottom: 10px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">E-Court Portal</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#advocates">Advocates</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#calendar" onclick="showCalendar()">Calendar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#messages" onclick="showChat()">Messages</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#documents" onclick="showDocuments()">Documents</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#profile" onclick="showProfile()">Profile</a>
-        </li>
-      </ul>
     </div>
-  </nav>
 
-  <!-- Content -->
-  <div class="container mt-4">
-    <div id="advocates">
-      <!-- Advocates List -->
-      <!-- Add a table or list of advocates with details -->
-    </div>
-
-    <div id="calendarSection" class="mt-4" style="display: none;">
-      <!-- Calendar Section -->
-      <div id="fullCalendar"></div>
-    </div>
-
-    <div id="profileSection" class="mt-4">
-      <!-- Profile Section -->
-      <h2>User Profile</h2>
-      <img id="profile-photo" src="default-profile-photo.jpg" alt="Profile Photo">
-      <p id="profile-name">Name: John Doe</p>
-      <p id="profile-phone">Phone: 123-456-7890</p>
-      <p id="profile-place">Place: City, Country</p>
-      <p id="profile-email">Email: john.doe@example.com</p>
-      <p id="profile-languages">Languages: English, Spanish</p>
-
-      <!-- Settings and Logout Buttons -->
-      <button class="btn btn-success" onclick="showSettings()">Settings</button>
-      <button class="btn btn-danger" onclick="logout()">Logout</button>
-    </div>
-
-    <!-- Edit Profile Section -->
-    <div id="editProfileSection" class="mt-4">
-      <h2>Edit Profile</h2>
-      <form>
-        <label for="edit-photo-input">Profile Photo:</label>
-        <input type="file" id="edit-photo-input">
-        <br>
-
-        <label for="edit-name-input">Name:</label>
-        <input type="text" id="edit-name-input">
-        <button class="btn btn-primary" type="button" onclick="saveEdit('name')">Save Name</button>
-        <br>
-
-        <label for="edit-phone-input">Phone Number:</label>
-        <input type="text" id="edit-phone-input">
-        <button class="btn btn-primary" type="button" onclick="saveEdit('phone')">Save Phone</button>
-        <br>
-
-        <label for="edit-place-input">Place:</label>
-        <input type="text" id="edit-place-input">
-        <button class="btn btn-primary" type="button" onclick="saveEdit('place')">Save Place</button>
-        <br>
-
-        <label for="edit-email-input">Email:</label>
-        <input type="email" id="edit-email-input">
-        <button class="btn btn-primary" type="button" onclick="saveEdit('email')">Save Email</button>
-        <br>
-
-        <label for="edit-languages-input">Languages:</label>
-        <input type="text" id="edit-languages-input">
-        <button class="btn btn-primary" type="button" onclick="saveEdit('languages')">Save Languages</button>
-        <br>
-
-        <button class="btn btn-success" onclick="saveEdits()">Save</button>
-        <button class="btn btn-secondary" onclick="cancelEdits()">Back</button>
-        <button class="btn btn-danger" onclick="logout()">Logout</button>
-      </form>
-    </div>
-
-    <!-- Documents Section -->
-    <div id="documentsSection" class="mt-4">
-      <h2>Documents</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Sl. No</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>File</th>
-            <th>Comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Example rows (replace with actual data) -->
-          <tr>
-            <td>1</td>
-            <td>Document 1</td>
-            <td>2024-01-15</td>
-            <td><a href="document1.pdf" target="_blank">Download</a></td>
-            <td>Comment 1</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Document 2</td>
-            <td>2024-01-16</td>
-            <td><a href="document2.pdf" target="_blank">Download</a></td>
-            <td>Comment 2</td>
-          </tr>
-          <!-- Add more rows as needed -->
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Chat Section -->
-    <div id="chatSection" class="mt-4">
-      <h2>Chat</h2>
-      <ul id="chatMessages"></ul>
-      <input type="text" id="messageInput" placeholder="Type your message...">
-      <button class="btn btn-primary" onclick="sendMessage()">Send</button>
-    </div>
-  </div>
-
-  <!-- Reminder Modal -->
-  <div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="reminderModalLabel" aria-hidden="true">
-    <!-- Reminder Modal content -->
-  </div>
-
-  <!-- ... (your existing code) ... -->
+      <!-- Reminder Modal -->
+<div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="reminderModalLabel" aria-hidden="true">
+  <!-- Reminder Modal content -->
+</div>
 
   <!-- FullCalendar JS and dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -230,9 +301,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 
-  <!-- Initialize FullCalendar -->
-  <script>
-    var calendarInitialized = false;
+  </body>
+</html>
+
+<script>
+  var calendarInitialized = false;
     var chatMessages = [];
 
     function showCalendar() {
@@ -324,6 +397,47 @@
       document.getElementById("documentsSection").style.display = "none";
       document.getElementById("chatSection").style.display = "none";
     }
-  </script>
-</body>
-</html>
+
+    function showAdvocateOptions() {
+      var advocateOptionsHeader = document.getElementById("advocateOptionsHeader");
+      var advocateOptionsList = document.getElementById("advocateOptionsList");
+
+      if (advocateOptionsHeader.style.display === "none") {
+        advocateOptionsHeader.style.display = "block";
+        advocateOptionsList.style.display = "block";
+      } else {
+        advocateOptionsHeader.style.display = "none";
+        advocateOptionsList.style.display = "none";
+      }
+    }
+
+    function showHighCourtOptions() {
+      var highCourtOptionsList = document.getElementById("highCourtOptionsList");
+
+      if (highCourtOptionsList.style.display === "none") {
+        highCourtOptionsList.style.display = "block";
+      } else {
+        highCourtOptionsList.style.display = "none";
+      }
+    }
+
+    function showDistrictCourtOptions() {
+      var districtCourtOptionsList = document.getElementById("districtCourtOptionsList");
+
+      if (districtCourtOptionsList.style.display === "none") {
+        districtCourtOptionsList.style.display = "block";
+      } else {
+        districtCourtOptionsList.style.display = "none";
+      }
+    }
+
+  function showDistrictOptions(state) {
+    var districtOptionsList = document.getElementById(state + 'DistrictOptions');
+
+    if (districtOptionsList.style.display === "none") {
+      districtOptionsList.style.display = "block";
+    } else {
+      districtOptionsList.style.display = "none";
+    }
+  }
+</script>
