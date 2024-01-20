@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
-    <title>E-Court Case Management</title>
-    <style>
-      #profileSection {
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+  <title>E-Court Case Management</title>
+  <style>
+    #profileSection {
         display: none; /* Hide profile section by default */
         text-align: center; /* Center the content horizontally */
         margin-top: 50px; /* Adjust the top margin for vertical centering */
@@ -74,18 +74,35 @@
       th {
         background-color: #f2f2f2;
       }
-    </style>
-  </head>
-  <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">E-Court Portal</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+    /* Additional style for the image slider */
+    #imageSlider {
+      margin-top: 20px;
+      margin-left: 20px;
+      width: 1000px;
+      
+      
+    }
+    #content{
+
+      
+      text-align: center;
+    }
+    .doc{
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#" id="homeLink">E-Court Client Portal</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
             <a class="nav-link" href="#" onclick="showAdvocateOptions()">Advocates</a>
           </li>
           <li class="nav-item">
@@ -98,346 +115,422 @@
             <a class="nav-link" href="#documents" onclick="showDocuments()">Documents</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#Casestatus" onclick="showCaseStatus()">CaseStatus</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#profile" onclick="showProfile()">Profile</a>
           </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- Content -->
-    <div class="container mt-4">
-      <div id="advocates">
-        <!-- Advocates List -->
-        <h2 id="advocateOptionsHeader" style="display: none;">Advocates</h2>
-        <ul id="advocateOptionsList" class="list-group" style="display: none;">
-          <li class="list-group-item"><a href="#">Supreme Court</a></li>
-          <li class="list-group-item">
-            <a href="#" onclick="showHighCourtOptions()">High Court</a>
-            <ul id="highCourtOptionsList" style="display: none;">
-              <li class="list-group-item"><a href="#">Allahabad High Court</a></li>
-            <li class="list-group-item"><a href="#">Andhra Pradesh High Court</a></li>
-            <li class="list-group-item"><a href="#">Bombay High Court</a></li>
-            <li class="list-group-item"><a href="#">Calcutta High Court</a></li>
-            <li class="list-group-item"><a href="#">Chhattisgarh High Court</a></li>
-            <li class="list-group-item"><a href="#">Delhi High Court</a></li>
-            <li class="list-group-item"><a href="#">Gauhati High Court</a></li>
-            <li class="list-group-item"><a href="#">Himachal Pradesh High Court</a></li>
-            <li class="list-group-item"><a href="#">Jammu & Kashmir High Court</a></li>
-            <li class="list-group-item"><a href="#">Jharkhand High Court</a></li>
-            <li class="list-group-item"><a href="#">Karnataka High Court</a></li>
-            <li class="list-group-item"><a href="#">Kerala High Court</a></li>
-            <li class="list-group-item"><a href="#">Madhya Pradesh High Court</a></li>
-            <li class="list-group-item"><a href="#">Madras High Court</a></li>
-            <li class="list-group-item"><a href="#">Manipur High Court</a></li>
-            <li class="list-group-item"><a href="#">Meghalaya High Court</a></li>
-            <li class="list-group-item"><a href="#">High Court of Orissa</a></li>
-            <li class="list-group-item"><a href="#">Patna High Court</a></li>
-            <li class="list-group-item"><a href="#">Punjab & Haryana High Court</a></li>
-            <li class="list-group-item"><a href="#">Rajasthan High Court</a></li>
-            <li class="list-group-item"><a href="#">Sikkim High Court</a></li>
-            <li class="list-group-item"><a href="#">Telangana High Court</a></li>
-            <li class="list-group-item"><a href="#">Tripura High Court</a></li>
-            <li class="list-group-item"><a href="#">Uttarakhand High Court</a></li>
-            </ul>
-          </li>
-          <li class="list-group-item">
-            <a href="#" onclick="showDistrictCourtOptions()">District Court</a>
-            <ul id="districtCourtOptionsList" style="display: none;">
-              <li class="list-group-item">
-                <a href="#" onclick="showDistrictOptions('Arunachal Pradesh')">Arunachal Pradesh</a>
-                <ul id="arunachalPradeshDistrictOptions" style="display: none;">
-                  <li class="list-group-item"><a href="#">Anantapur</a></li>
-                  <li class="list-group-item"><a href="#">Chittoor</a></li>
-                  <li class="list-group-item"><a href="#">East Godavari</a></li>
-                  <!-- Add more districts as needed -->
-                </ul>
-              </li>
-              <!-- Add more states as needed -->
-              <li class="list-group-item"><a href="#">Assam</a></li>
-            <li class="list-group-item"><a href="#">Bihar</a></li>
-            <li class="list-group-item"><a href="#">Chhattisgarh</a></li>
-            <li class="list-group-item"><a href="#">Goa</a></li>
-            <li class="list-group-item"><a href="#">Gujarat</a></li>
-            <li class="list-group-item"><a href="#">Haryana</a></li>
-            <li class="list-group-item"><a href="#">Himachal Pradesh</a></li>
-            <li class="list-group-item"><a href="#">Jharkhand</a></li>
-            <li class="list-group-item"><a href="#">Karnataka</a></li>
-            <li class="list-group-item"><a href="#">Kerala</a></li>
-            <li class="list-group-item"><a href="#">Madhya Pradesh</a></li>
-            <li class="list-group-item"><a href="#">Maharashtra</a></li>
-            <li class="list-group-item"><a href="#">Manipur</a></li>
-            <li class="list-group-item"><a href="#">Meghalaya</a></li>
-            <li class="list-group-item"><a href="#">Mizoram</a></li>
-            <li class="list-group-item"><a href="#">Nagaland</a></li>
-            <li class="list-group-item"><a href="#">Odisha</a></li>
-            <li class="list-group-item"><a href="#">Punjab</a></li>
-            <li class="list-group-item"><a href="#">Rajasthan</a></li>
-            <li class="list-group-item"><a href="#">Sikkim</a></li>
-            <li class="list-group-item"><a href="#">Tamil Nadu</a></li>
-            <li class="list-group-item"><a href="#">Telangana</a></li>
-            <li class="list-group-item"><a href="#">Tripura</a></li>
-            <li class="list-group-item"><a href="#">Uttar Pradesh</a></li>
-            <li class="list-group-item"><a href="#">Uttarakhand</a></li>
-            <li class="list-group-item"><a href="#">West Bengal</a></li>
-            <li class="list-group-item"><a href="#">Jammu and Kashmir</a></li>
-            <li class="list-group-item"><a href="#">Ladakh</a></li>
-          </ul>
-          </li>
-        </ul>
-        <!-- Add a table or list of advocates with details -->
-      </div>
-
-      <div id="calendarSection" class="mt-4" style="display: none;">
-        <!-- Calendar Section -->
-        <div id="fullCalendar"></div>
-      </div>
+    </ul>
+  </div>
+</nav>
+<div id="content">
+  <!-- Content will be updated dynamically -->
   
-      <div id="profileSection" class="mt-4">
-          <h2>User Profile</h2>
-          <img id="profile-photo" src="default-profile-photo.jpg" alt="Profile Photo">
-          <p id="profile-name">Name: John Doe</p>
-          <p id="profile-phone">Phone: 123-456-7890</p>
-          <p id="profile-place">Place: City, Country</p>
-          <p id="profile-email">Email: john.doe@example.com</p>
-          <p id="profile-languages">Languages: English, Spanish</p>
-          <!-- Settings and Logout Buttons -->
-          <button class="btn btn-success" onclick="showSettings()">Settings</button>
-          <button class="btn btn-danger" onclick="logout()">Logout</button>
-      </div>
-  
-      <!-- Edit Profile Section -->
-      <div id="editProfileSection" class="mt-4">
-          <h2>Edit Profile</h2>
-          <form>
-            <label for="edit-photo-input">Profile Photo:</label>
-            <input type="file" id="edit-photo-input">
-            <br>
-    
-            <label for="edit-name-input">Name:</label>
-            <input type="text" id="edit-name-input">
-            <button class="btn btn-primary" type="button" onclick="saveEdit('name')">Save Name</button>
-            <br>
-    
-            <label for="edit-phone-input">Phone Number:</label>
-            <input type="text" id="edit-phone-input">
-            <button class="btn btn-primary" type="button" onclick="saveEdit('phone')">Save Phone</button>
-            <br>
-    
-            <label for="edit-place-input">Place:</label>
-            <input type="text" id="edit-place-input">
-            <button class="btn btn-primary" type="button" onclick="saveEdit('place')">Save Place</button>
-            <br>
-    
-            <label for="edit-email-input">Email:</label>
-            <input type="email" id="edit-email-input">
-            <button class="btn btn-primary" type="button" onclick="saveEdit('email')">Save Email</button>
-            <br>
-    
-            <label for="edit-languages-input">Languages:</label>
-            <input type="text" id="edit-languages-input">
-            <button class="btn btn-primary" type="button" onclick="saveEdit('languages')">Save Languages</button>
-            <br>
-    
-            <button class="btn btn-success" onclick="saveEdits()">Save</button>
-            <button class="btn btn-secondary" onclick="cancelEdits()">Back</button>
-            <button class="btn btn-danger" onclick="logout()">Logout</button>
-          </form>
-        </div>
-    
-        <!-- Documents Section -->
-        <div id="documentsSection" class="mt-4">
-          <h2>Documents</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Sl. No</th>
-                <th>Name</th>
-                <th>Date</th>
-                <th>File</th>
-                <th>Comment</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Example rows (replace with actual data) -->
-              <tr>
-                <td>1</td>
-                <td>Document 1</td>
-                <td>2024-01-15</td>
-                <td><a href="document1.pdf" target="_blank">Download</a></td>
-                <td>Comment 1</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Document 2</td>
-                <td>2024-01-16</td>
-                <td><a href="document2.pdf" target="_blank">Download</a></td>
-                <td>Comment 2</td>
-              </tr>
-              <!-- Add more rows as needed -->
-            </tbody>
-          </table>
-        </div>
-
-      <!-- Chat Section -->
-      <div id="chatSection" class="mt-4">
-        <h2>Chat</h2>
-        <ul id="chatMessages"></ul>
-        <input type="text" id="messageInput" placeholder="Type your message...">
-        <button class="btn btn-primary" onclick="sendMessage()">Send</button>
-      </div>
-
-    </div>
-
-      <!-- Reminder Modal -->
-<div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="reminderModalLabel" aria-hidden="true">
-  <!-- Reminder Modal content -->
 </div>
 
-  <!-- FullCalendar JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- FullCalendar JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+<!-- Image Slider -->
+<div id="imageSlider" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <!-- Image 1 -->
+    <div class="carousel-item">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUTEhMWFhUXFxUWFRYVFRcXFRcVGBcWFxUXFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGi0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAADBAIFBgEABwj/xABAEAABAwIDBQYEBAQFAwUAAAABAAIDBBESITEFQVFhcQYTIoGR8DKhscEUQlLRByNi4RVygpKiM3OyFiSDk/H/xAAbAQACAwEBAQAAAAAAAAAAAAADBAIFBgEAB//EADkRAAEEAAQCCAUBBwUBAAAAAAEAAgMRBBIhMUFxBSJRYZGxwdETgaHh8DIUQlJyotLxBiMzNJIV/9oADAMBAAIRAxEAPwDNtjXS7cAuk7gutHBadY3mohnFFazgFDCb5o9PqehXgokoXdO5KJhcpyON1JrivUuWUDDbkjsRBZ2RUBGQV4CivZrRIuHojhqEAmmhdqkFxXA1Ea1da1Ea1cUQ5ea1Fa1cClbihOTER1XcQHNS8R5IeMDT39yhum8+uQ9Alnq3w6MWje6/mu4RuafMH7pUPduNumX0XRCTql3hXcDgmC07gPVn7rmB/AeWH7IYp1L8Ol3BW8RRC0jVp9CoiTmVENcNCfIqWNx1APUZ+qA5qeY5EEnnkTkCTlrkMytBQ0sEFE6epYJZXeJsLXZsDrCOM4dMvE5xva7uAQ+x9SxlV3LgB3sTyCc7ua5t2Z/03PmVf1PZKFrscAEZvfCB4L3uSG/l8kGrtCxMxDgxxI46ce69wOS+Af8ArOoEhyY8YrYS0tdroLZjoQSrzZnaunmOFx7p+ln/AAk7wH6a8bL6/tPstTVQ/wDcRBzs7PwgPF/0yNGJvkQvlXa3+DksQMlC/vW6mF9hIP8AI7R/Q2PVSyBIDGStOpvn6cU88Jd4WM2TteWmd3TsRDTZ0b7gtI1Avm0jh8lr6WsZK3Ew3GhG8HgRuKlHuiPkDx2FCkCXc2+gTUoVl2YYwy2lNmW8WdtGuIz3Z2CZfJ8NhfV1XmB6qpxBrVULqZ/6Hf7SlpIyNQR1yX078NRk5ZHc10tmuJbG6xfh8ABdI2+/AOK8KSiNmmQ2xfFiObe8c0DDhy8Aa6/O9kuzpRw3aP8A0R6KuLSeI8V8uAuoYTwX06u2fSNjme3EA3CwFtiCXsBNiNcGF5tc38IvvVb/AIbs7G4F7Q0YbEVGL+XeQOkB7vOSwjPdf1HoLLDYz4oPVquzX29e1DMJ7R4rCYTwKgWHgVuYafZ4GoLu7e3xyWaZDTse13w+C0he0br9FGWi2eRNheRhBDSZcz/LLmvjbg/mEyWYWXyAvfO4aEovY+H3Q/gk8R4/ZYcjkvW93Vt2rfGaqUxYe7L3YMIs3DfLCBuVRlyRQbAKCRRpWzAi3t1Ug2wugou6riLK9dHp9T0KAEWDf0+4XSvFQf8AEpBQkPiXQ8Lwpc4BEaiBDaSdAUQRusu5goHREATUYS0eibjC8UB6m0Ka8vE2UCoAruig56iSuhDKbjNLllNjF1reKlPUtjbidkN28k8GpeQhoLjoFa4bM5waBZOwRGxIzYhxVRFtVzycDMuZz3Z6WVhTmS4vboSR9COiocR0zh2GhbuQ9yCtRBgJmi3UPn7JsRjn6Lvdjn6f3TbaKYDEWC3In+6mIeVjwXoekIpnZKLTwDhV8tdU21paOB5JMX5HkR+6ZZA0DxNseWnv31ajpLZnX6e/fP0kdvfv38jlWEW1lVs+zg58T8Zb3bw4Ob8QGWIDrYegX0DZm0MfgeRjw4gR8EjMv5kZ4ZgEatOWlicJIbcun7e/3HJUvsA11i12NgBt4/1Md+R2ee51yCM7gLmkHMF6eITAAmq+nrzHhrv9Pc1LTjiLjlr5cVm+z/a8PGCqb3bhljtZh/zDPuz1OE7jnZahrw4XBBC814OoVVNh3xHK8ex5FfPO2vY2KscDkyUi0cwGTrflkGpA4HMbufyCOnqqGs/DyMLZMVpWE+FzczjDtMIF3B3AHmv0tXUQe02NjcEHUYhobcd3msr/ABL2O2ohNQwDvoIzlhOKVgcHGMut8IIxW5EZAm8nHSxuhMb1g26HksA8gi40OY6IAlc2+E2vqrTaezfw+CIm7xHGZeUrhieOmYVXIE9EA9ozDdK4qrIGyE+qk/W7/cVxu05R+c+YB+yHIEu5MiCJ2haDzAKq5KTc21ZXC2Kw32ACR7w8SulDKPFEyIUxoHIAeSXKn3h4lRMh4lQXfVFCiQF0knUr3vRI1O02N0OI8AcvMqtk2xJfIgDhZLyYuJhq75apiPCSPF1XPRbiqdb1QQ7gEdzx18lEypzVU422UAxx3W6lGhYRv5KBepwH4un3C9SibpccG3z1U2vA0CA8+IrocuhRLdEyJCjz5C2+wv1KXp9bnQZqUklz8yvEoZbqjsGgTIKSidvRe9XC5Bc0lM4l1pukzKj08gUMyk2MqbjZexJeWbNejehlwTDWFPRhYbtBtnFK7WzSWgcACR6nVbaJ9lkO0mxwJ8cdv5l3OBtZp3nzv63VV0ibj1OgOvp9VpugTkmIrrEUPM/T24pegrJ3DwNNtLk2GfEkgK3pXzE5zRN5mS/H9IPspPZtNA0gyyNJ3A3d5BoWlppWN+Fkltx7nCDuyJbnuWWnkAPVb9Pf2WyGYDVTZPUADDVRO/pD3j/yaArjYtRN3jWyjNxy3i283HK6tqLZ7nsDnxVBvmLxNI3Zruz+7ieS5pBOXiBaRxsCPdlxjRnaXihoeVcvzjwUo6LXEts8BorMxpSdnv37+78qUlHv37+2iSgkVTUR+/fv7JGP379/e1qB79+/uu6Kzb8ffv3bwOql8SgkmT2Pyvw5HiPfSyotsdxkPC3gASwH/KM2/wCn0VVJGpwi+R98lBzQTalmsZStJH2vjtdzHO/7bmuP+12G3mkqztK2U4YxJAyxxSvAFuFmsLi7PoqJ9JhPLchTm0ZHT6qIab3XnxRNYXButHiVS7f/ABFK4fjfEHhpbVs8UUznYbaDwm2Im5zw5BL0g78AxFrwdLPbf0JuFpdk7MkrY5KMyuZTus+UAA3AOjcQ8JJtny36IVdsVlEXxwMETA0OxN+Jw345T4jnuupSYp+HFDVI4fAsxjqJy739rB+Y9VWnYIbbvpWsJ0Y3xP8APQN80LaT6emH8qLvHb3v8QH+nIfJQo6iJzrNJdvLgDhH+o/EeiR2zWvjcQWa3Ivrmq+THYmQ5S6h2DTy1+quYehcJD1w2+86+A9ks7bTHD+ZDGebW4D/AMCPmvY6d+YxM9HD7FLd+HfFA7qAUB9KD8Mbx5fupR4yaPRryPmCPraFN0VBLqY2nkC0+Iop6OCInOZoHS59P7pr+JPZ1lNBSVNM97oJ2WeXEXEtsQ0AtcYhbO3dlUohI3L6J2UpxtDZtTs9x8YHewk/lde4tyEgF+UhTQx80pySOsHuA8v8dyrp+iYYIzJEyiN9SdPn2Gtl8UJULokkbmktcC1zSWuB1DgbEHmCEFTVfS+lnzQ2uRWOQ5Yd7fS61BKxumxXSpwHJ3QfVLF9tQiQSfF5fVcLgvFppec7xFcBQHv8RUe+so5tFLInnTWFgoNkXtnUb5nWGm8rU0fZ+NozGI7yUMvpeEKzgmXHTrUT7BgIt8J4grObZ2JJDYtONpNstfRBdLSm3DEnZLGoU2VOSq5y5vxNI6hANShGa0duFrgrcVCPFOqNlQjCpQ3TI7MKrwVSqNqwl/eSFxs1zGho0sWnMnqNOaF+KTr2H8PLfXwu9HNA/wDIpHFPBaOYVt0fGY3kjsr88Fqf4URsEnwtuQ4XsL6X18luO1sALIXkXwudb1WH/hXEe8a85C+XO4Iv0zX0TtIy8F+D/ss5K2y8d/8AafRXzGViGEjevqrfYUmKBh5LG9o8nu6j6rU9lpLwDkSFlu2TbSP5hNYjWGI8lzCH4eKePzdWJ0S8gUqaTFGw8WtPyC44K0adEoXa0kahl0Mm6PtM4GE7ylaTNq5mo0itfYtAkhUGQ2KsAxT7lTzaIzDZQn092npkqXaUdmjr+607G+FUm3Y7Yedz9FBjusp4h+WJ3L1CQo62SBwliIBsQQRcEHcR1Wkr9mRVDBJJIXNsDcm4zF8gcgb8lmYm3BCCI7EGwNiDY6G24o74Gzb6Kmi6RfhXFzfOvQq8ihha4NiYH52Lviw8ydGpPtVs2JzcZ8TmjPCbeatpNt07iMMRxO0FgBcmwvuTojleHCRrGgiwDH4nEH9RwgDyuqyTDlujhV7aLSwY9kjhJG66361+6+PY3EkNdYf1aIL4T+d7T0unNt0RZUSNaLNuQBrZQZRv+Ii3FxB+iTaC45W6nsGpWlkYwMMjzTRrZIArvUYqfELDU6BX/ZhktFUxSkeHR1v0HVp52z6gKjJw6DP9WVvpohTSufqSffHVXMHQs7qc9wb9T9CB9Vj8b/qjBC2QsMm4/hB+erv6duae/jX2fENW2qjA7qpGIkaCYAYuXibhdzOJfN8K+g7U2tNPStpJCCxtiwkXLS2+Eh3AXI6G2iwssJaSDqDZHxED4P1bFU+GmZiB1Nxut3jtr6qQk4EKbh7shPjHBaHUbLHaHdTMvIIT5eigWdVBzVFxUmsahySLtJCZHtYN5+W9DkV72NhBe553WAS8jk1G1amlgjhjubNa0ZnkkhtgyXLRhZo39TuZ4JTtLWh0jacHKwe/n+kff0Xtlvj7wNdpbJVGNxRb1R81cYTBBzc7hasY8RFyrOnpmkcV6raGtuOC5Rz3tzCpjPkd1tU6MPnbYUp9nMeML2gg8QsH2m7IyREvhBc3e3eFvdp17IWY3FZ7aXbVjf8Aptvzd+yIMURqzfzRYsC9420/OK+b94WmxBB4HVHhY526w4lObV2uyR5kcAXHgLBVM20nO0yHyTYne8bUpnBRxnrOvuCvJHRR6fEN5O9WGwh3jH4wS0iw/qzB9LgLP7HonTuxP/6bdT+o/pH3K2UAysMmjhploAl5TQy3Z8lddHYH4v8AuuFM4D+Lv5efLe22PUvicHNwi1iL8tFbVvaBz24Xyggm5aAB8xZZxxHGylHFGdfq4/Jo+6TkY0a+SupcPGXZ3DXkPW1fbP7QsjGEVMjRwaL/AFQq7akUpN53O3XcLH5JSljp9CwX/wC0XfV4RKmihNrMI6NLb/MrkbWkAG/zu+ypsTkDrAPgPZaDY8oMTcJuG+G/TT5WT8Lbmyxg7SMh/l4Cy35SPnz6qwb2nY1mI6nRWjLpUMgOaxxOib7USZckPZZu0Kg2pt1sosFPZ+2cIshFxDsyZZGcgAWpDUQBVFNtPErSGa6kHpmOFw3RmhVW3m5t6fU/2VuNR74Kp20fEeQHv5qUf6kn0nJliPy9SqmMWK85manZSsno91lZp9ElJEvfjZ26SH6/VMvCVkanmtDh1gDzVacXJGSY3kciR5EJOpqHuJLi0k6nA0H1Auq2SNWczUnK1NRMawdUAchXkhSYqWcgyvc6tszi6uVk0q2RiA9vROyhKvTARmOQCErLRscSSBcpty4uPja8U4WmYpnxG2Eg9ytD5oZ81IjooOXEqFFyXejOQHqLlNqXlT/ZvaYiks74XfVV8qUlSkgtOxGirPtXK5tWX7nBpHS1lZ09M6SPvAcxoqJtY2QNZLu+F28DgeSfkqnxD+W67CqXGgmq3Wj6OdQNHTRabZm1scZiebkDI/YotFVnDYag2WLFa4HENd6bl2q5vjZnlmFSzQOJ0V5E2PXxVz2vqXSQlrdRmF81qZ33sbg81oodvuL7u04JrtRXQSQYsDQ+4sRqjYcOhIYW3ajNldH1HUB4eG6hsjsiHQuqJn3DWk4G9N5Wf2Ns11Q65uIwczx/pbz+ivdg7XfNBJAAQ1ws9+4A7hzVvR0zWgMYLNaPT9ymPivbYO/kmcJ0ZHiHCQ/8Y/q7jxoce3YIlPCAA1os0ZWG4cE2XgC25QJAFgl5HIK07WI/4gBMR7XaBbC3llcqqeomoe2xBt0AC8IBJwtJ4ssA1Wk2ftvCRaIut/QT9uaeqtvPeM4C3/4yOPJYmXasrdJXDo4j6IsO1ZS0+NxPNx98U3Hgj+mhXM+yyuLmiDsyar5PxMrLflvfpcZfVIbQqcT7DQZBMsJiic7877/NVTGZ5lPCHIzKFWtmEkhfw2HqUeM56q1pAq2MgJ+lelZRSt8M3MtDs8LR0bVnNnFaWiOSXtNStyhMu1HRUO05ryvHl6WWh3rJ1T7veeZ+6PBq4rKdPzZIm/zeQ+6iSpXUF1WDAsVLOVx5S70ZyBInWJLMSUtKk5k7KUhMU0xHjSkqUkTMxSr0cJ5iE5RXXLllJHCs3IbveSIfNQd5oSEEJyE4IpUCuFEalpWJWVieeEB0aWeEw11KtkYux1DmgtvkdybfEl3wpGVgO6chnLDbSgNnIR4a0B1x5hLSQpd7SEjJC0q1gx7m0tZR7OjqrBsdjvOis5v4ciVws8taPO391mezVfOJA2PPiTo0cSvpFD2jc0BuG/E/cocXw4RTjrw30CuIMNNjuu0dQb8LPYPXs57dpOxsUbAxhIA9kniU1/gETBm5WFJtuJ+VrFOOgZIF0Rxu1aArj9onjpr7AHd5LJ7I2YyaqEV/CTlffyW0l7NwRGxY07wbJGHs6wPDhcEG4tcEHkrqSKQ6kk8SvQw5R1gLQMdjDI9uR5y1qNte1V02w6d4zYPRIT9jqZ263Qq8fE8bkeniL/hzAyTIaAqabEPH7x8Vkqj+HsBGRI80Cn/h6xpyeVvHUrraKurKrumknVSz96Qc4uFFZWv7FlxyOQyAVbN2Ikve6v6HtUyR5YDpxTx7RQg5vahSPrQkhEijLf0hYCq7MTMOTCeiapNjPGoI6hbA7fhBu6RluFxdSHaajO//AIlKljX/AL/jSuYJpmigy+VqnodmEK+pqeyC7btMR4Tn0KboZ2yC7UItDTV2jSPlIzOaQFMDMn3ksa3itjPk1x5H7rKNYj4bj8liv9Rut0Y/m+teyGAvFFwqD1YxrIPQXlLyFFkKVmcnGKAFlBlckZnI8r0nK9NNTUbUGUpV5RpHJdxRwnGhRJUVI+aj6rtoqsz7zUD7zTLYM7GwyuhSwkX4D2ENDQBqLo7YGm/X9l1tJfUjyRYhm7r9guFStKSUuYAOt9UF0OdlYj4ugQzFmct6XeVEvpImBCfTq3bCpfhkhI8LzZqKz0tKeCBDst8jwxozPoFpRQF7g1guT7uVpKDZTYm2AuT8TuJ/ZV2IxIjHetH0Ng3Yx9nRg3Pb3Dv7Tw50qSi2Y2FgYwdTvJ4lHLQ0K+NE23ApCo2Y7cQeuSpf2yMnrHXv99l9JgfGxoY3QDYKmfIQck9s/b0sTgb4gNxUZNlScB6qLNjyHXCPP+y6MXE3XOPFOPdC9tOohal/b/LwxC/MpGft3UuyY1jfIn7qvh2KPzOJ6ZJz/CYyLNFjuOZ9Ub/7TA4AuNdtafnJVEuEwjQcjL8fVSptsVs17ybshkAmtnO2jE1wjkjs438VyQd+iV2US02IsQbFaKFWv7Q6+CyuKa3ORsq9ke03nxVDLcif2VftTY9ZIc5ARoBiOnota3IdUB7l0TOJvTwSXwGE8fEr55U9mqu1gGjo4aJRvZuYfED5r6NI+ySqJsr2QpsVJXBWGEjazRoWDNBZ1itBQbKiNr3KjVSYnWwg9f3T9CwXsOXry4pIT5j1t1fZy1grRWVHsuIflV3SwhosAAOSUo41ZxMRCq6WZztyldoD+U7p9SAs73S0+02/yyONv3+ypnRJzDimrH9NjNMB2NHmfsq57EpKrKZirqhWMYWYkZqkpSkZnpmocq6d6cY1cYxClelHuUpXpdzkdqdYxceUByIbnRDcEUFHAXCue9V70UfRdUwtMWZtJ6dRwUJ48QyNh01yulqSrExAzFhfmdL+ScII00P7WQrvZQoDQqEbMhnnb6ZH5rkbACbuFyQbb9yjQC4ud1wPPMlJ1AAnI3b/AEQ3uIXtDasRB4tdRw3ZZ/MJiOLn71SM1aGka3zNuXPzWhO02GJpiaM7ghzRcEAX8zcZpOWRCcBRJ0CRZT5X355W9ffNHiosbg1uZI9np+yX2XM+TLDf9Nhrfd9Fstj0ndXJsXYSCVU4rE/D33R8BgHYqXKNGj9R7O4d5+m57wbN2SI2ne46n3opSQWGiuL5HDrqkakG1/LzVDLNnuzqvoGGywsDGCmjZJNhvdQkh9+inidnZJ1M8g0PyCq3Yd7joR9fZWkb72K9IwDUgDmljURj848gT9EjVyvcfEb+WiQmcdyZiwDSOu4/L7i02Dpurl20Ih+fW2gOpy+6fgAdmHAi2737ssZLESGtYDe/nflbqVqdkQyRsDX2uL6DQHOx4+S5jMLFDGCx2vYa28BshZyTQUqqmPemziMm6c05BTz5ESaGx92UaqBzm42DxC3+oDMC/FCZtJwborfATiTDtDd2gA93+eH2WexUZ+MS/bf89VZTvmv/ANQZf0j9kKKd5Gbxe9vhH7Kpi2o/MkE+ah/jBa7KM5nj/bknsjqpLMBf1hxV2+mnefC6w6D9lUbQ2dO3Nxc7PK7iBrkLDkmG9pZB8MX/AC/slKvbk0gtgA3/AJnIMxjqrN/JWeGZK06AV8ktHAcQFhbP14KxppGtIzy16hU5llJBJHCwFkxSMN8+Fv8A9Vfk6wKsz1m6lbyijBAIORTrW2sqnYLiGZ6E5dPd1btJVkzrAFUMgyvI7EvtAXwj37zVcY7A3VjtPIg9ffySU51T0LdFnceQZTfd5BVlQBZVFQ3zyKcknJvfUW+6rKmY/ZWMTSs/KG2kHG5t1+hSVVDkbccvUC3zRJ5rG/vRV89QbAX1t8rJwNXYmCtVGSHMC+txpvsefJCjh8Qsbi172+ylLUHE3T2CuiQgA23W0yU6KbDWqTKfdfQ203aj6hLvpiQDfXQW4lciqhZ19XHytp+67FU2aBfp6qQtd0UPwmYF9bjTQjz5KElNnr8keOpdbEfLzyXopss13Vd0UNjREyBwBsAc92ml05tWtAIaNRrwz3e+KqKepcw3a6308wuTzF7i51rngPJAz03RecyzZV3smUOB03XHvclKNneSuI/qPlew+SVpJ8GMg5luEeZH2uuR9etkB79kMsq03V/HlnkPJP0hcIXcHGwFt5sCR5ZeSrI2rSbMgLWjF1A/T055qtxMwYLRsNgn4lwY3YVZ7B7ngPZafsnTNihxO+O58uf7lWsU0RGTxizysbW6kaqipakd25h8ueeYU6ZpcQAs7M4uJLlroo2QsDIxQH5r3laWnbcqNTFkQNL39+qg92EX8goMkJ1VU5xJtTLqUWUtyl6mi5K1iC9U7Qhh+N4B1te7v9ozUWOe52VgJPYNSpDEOasxU7N5KnqtnEK92j2oBuIox/meLnyaD91n6ire83cT9vIDIK1w8Mg1kNdw6x9h4k926tIcLi5htlHa7+3fxy80vHTkHI2tmCNxWho6sOFrDENefMBUYcgt2iGO8V2G+Rd8J4WeMs+Bz5I2JwzMQygKI2O5+fdyA4KxZgGRN6zySe3QeHuSexbGGU31Qa1jTd1hz58+qVgqwW3Jsd/7hKVNYXdPeqq8BBOzEWNK0de1dnffCudjRBdghMcrxp4eVI0bmaEW9ER1NG4bvVVuNc70jNaFwDjeo+v54peTocjWF/yd7jbwPNXzWxAZi/JAkqG6NYB5Z+qTh2iB8TR1GR/ZWlDJHJk05gAkEWIve30PouNYPyv8/RU+IhxOH1kYa7dx4jbkaPckBT3zsU/SUIvn6J1sAuiuZYqYiaOCA3FvPFOUjbWT8TxitcX4JKnc2+vvmhzvwyXvfMH+xRQ1eDrUdr1NieRB89FVOrsYNsiNUPbtc0ufnwtbjYfdULa4NvffwVnDHoFlcZPmlf8AzEeBpEqqi0h4H39VU7Vqi3TeibTna5uIHMH5H+9lSVtWXWvuTrRSQaMxBRzIMGIm5zy+SVdFoUEVTcOF2XMfddq6hzAC056XtcpgaBMNZql6vU7sr+gTDtokRYciXZZ7hvy62S3f4muL8yNDbeb8EsZBhtvvfyXDqjgUpF9x8k4wgxaDT5pGKS24FFjmsxzeYt56++a6HLhanKYBwtrbclZpiHENAtdQpZ8JzOW9Rmc1xJw6rtrmVQYpheXkqUQojEVi8vJd6E5XuzKS1nO+LcOHIq2jcuryoJ3FxJK18cbcPGI2DT6k9p/O4aI8blYUkxbobei8vKtkFqOcqxFQXAX9+803CV5eVfIK2XcxKT7S1D2QjA4tJcAS02NsLjqsc/Frr9V5eVjgz/sAc/NaXoVrREX0LvetaoaXvSiFMLy8mFeKQK7a+R03ry8uhRKVNDhzhcY/6Pii/wDr/L/pIR6aR5uHtAI3tddp6aEdCPVdXkXOTuh5ANtPJGuo3Xl5ctSS9ZVNjaXO0G7eTuAU/wCHNa6SonLjm6Np5ANcAAP9y8vKTNwq3pb/AKrx3eoW+yzzUC4cQuLydAWGa8qBlA3qD5hxXF5SpMsesltKovI7/MPqquadcXlcRjQcgsZKbldzPmUhNUHPPXVISyLi8jBHjAS7nI0lYS3DYaAZry8ppgAJS68vLy8uleXV5eXlFdC4vLy8vL//2Q==" class="d-block w-100" alt="Image 1">
+    </div>
+    <!-- Image 2 -->
+    <div class="carousel-item active">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeFLB0n7dEriqfQWWjO8RQ2vW-GpF-vYgYAA&usqp=CAU" class="d-block w-100" alt="Image 2">
+    </div>
+    <!-- Add more images as needed -->
+  </div>
+  <a class="carousel-control-prev" href="#imageSlider" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#imageSlider" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
-  </body>
+<!-- Content -->
+<div class="container mt-4">
+    <div id="advocates">
+      <!-- Advocates List -->
+      <h2 id="advocateOptionsHeader" style="display: none;">Advocates</h2>
+      <ul id="advocateOptionsList" class="list-group" style="display: none;">
+        <li class="list-group-item"><a href="#">Supreme Court</a></li>
+        <li class="list-group-item">
+          <a href="#" onclick="showHighCourtOptions()">High Court</a>
+          <ul id="highCourtOptionsList" style="display: none;">
+            <li class="list-group-item"><a href="#">Allahabad High Court</a></li>
+          <li class="list-group-item"><a href="#">Andhra Pradesh High Court</a></li>
+          <li class="list-group-item"><a href="#">Bombay High Court</a></li>
+          <li class="list-group-item"><a href="#">Calcutta High Court</a></li>
+          <li class="list-group-item"><a href="#">Chhattisgarh High Court</a></li>
+          <li class="list-group-item"><a href="#">Delhi High Court</a></li>
+          <li class="list-group-item"><a href="#">Gauhati High Court</a></li>
+          <li class="list-group-item"><a href="#">Himachal Pradesh High Court</a></li>
+          <li class="list-group-item"><a href="#">Jammu & Kashmir High Court</a></li>
+          <li class="list-group-item"><a href="#">Jharkhand High Court</a></li>
+          <li class="list-group-item"><a href="#">Karnataka High Court</a></li>
+          <li class="list-group-item"><a href="#">Kerala High Court</a></li>
+          <li class="list-group-item"><a href="#">Madhya Pradesh High Court</a></li>
+          <li class="list-group-item"><a href="#">Madras High Court</a></li>
+          <li class="list-group-item"><a href="#">Manipur High Court</a></li>
+          <li class="list-group-item"><a href="#">Meghalaya High Court</a></li>
+          <li class="list-group-item"><a href="#">High Court of Orissa</a></li>
+          <li class="list-group-item"><a href="#">Patna High Court</a></li>
+          <li class="list-group-item"><a href="#">Punjab & Haryana High Court</a></li>
+          <li class="list-group-item"><a href="#">Rajasthan High Court</a></li>
+          <li class="list-group-item"><a href="#">Sikkim High Court</a></li>
+          <li class="list-group-item"><a href="#">Telangana High Court</a></li>
+          <li class="list-group-item"><a href="#">Tripura High Court</a></li>
+          <li class="list-group-item"><a href="#">Uttarakhand High Court</a></li>
+          </ul>
+        </li>
+        <li class="list-group-item">
+          <a href="#" onclick="showDistrictCourtOptions()">District Court</a>
+          <ul id="districtCourtOptionsList" style="display: none;">
+            <li class="list-group-item">
+              <a href="#" onclick="showDistrictOptions('Arunachal Pradesh')">Arunachal Pradesh</a>
+              <ul id="arunachalPradeshDistrictOptions" style="display: none;">
+                <li class="list-group-item"><a href="#">Anantapur</a></li>
+                <li class="list-group-item"><a href="#">Chittoor</a></li>
+                <li class="list-group-item"><a href="#">East Godavari</a></li>
+                <!-- Add more districts as needed -->
+              </ul>
+            </li>
+            <!-- Add more states as needed -->
+            <li class="list-group-item"><a href="#">Assam</a></li>
+          <li class="list-group-item"><a href="#">Bihar</a></li>
+          <li class="list-group-item"><a href="#">Chhattisgarh</a></li>
+          <li class="list-group-item"><a href="#">Goa</a></li>
+          <li class="list-group-item"><a href="#">Gujarat</a></li>
+          <li class="list-group-item"><a href="#">Haryana</a></li>
+          <li class="list-group-item"><a href="#">Himachal Pradesh</a></li>
+          <li class="list-group-item"><a href="#">Jharkhand</a></li>
+          <li class="list-group-item"><a href="#">Karnataka</a></li>
+          <li class="list-group-item"><a href="#">Kerala</a></li>
+          <li class="list-group-item"><a href="#">Madhya Pradesh</a></li>
+          <li class="list-group-item"><a href="#">Maharashtra</a></li>
+          <li class="list-group-item"><a href="#">Manipur</a></li>
+          <li class="list-group-item"><a href="#">Meghalaya</a></li>
+          <li class="list-group-item"><a href="#">Mizoram</a></li>
+          <li class="list-group-item"><a href="#">Nagaland</a></li>
+          <li class="list-group-item"><a href="#">Odisha</a></li>
+          <li class="list-group-item"><a href="#">Punjab</a></li>
+          <li class="list-group-item"><a href="#">Rajasthan</a></li>
+          <li class="list-group-item"><a href="#">Sikkim</a></li>
+          <li class="list-group-item"><a href="#">Tamil Nadu</a></li>
+          <li class="list-group-item"><a href="#">Telangana</a></li>
+          <li class="list-group-item"><a href="#">Tripura</a></li>
+          <li class="list-group-item"><a href="#">Uttar Pradesh</a></li>
+          <li class="list-group-item"><a href="#">Uttarakhand</a></li>
+          <li class="list-group-item"><a href="#">West Bengal</a></li>
+          <li class="list-group-item"><a href="#">Jammu and Kashmir</a></li>
+          <li class="list-group-item"><a href="#">Ladakh</a></li>
+        </ul>
+        </li>
+      </ul>
+      <!-- Add a table or list of advocates with details -->
+    </div>
+
+    <div id="calendarSection" class="mt-4" style="display: none;">
+      <!-- Calendar Section -->
+      <div id="fullCalendar"></div>
+    </div>
+
+    <div id="profileSection" class="mt-4">
+        <h2>User Profile</h2>
+        <img id="profile-photo" src="default-profile-photo.jpg" alt="Profile Photo">
+        <p id="profile-name">Name: John Doe</p>
+        <p id="profile-phone">Phone: 123-456-7890</p>
+        <p id="profile-place">Place: City, Country</p>
+        <p id="profile-email">Email: john.doe@example.com</p>
+        <p id="profile-languages">Languages: English, Spanish</p>
+        <!-- Settings and Logout Buttons -->
+        <button class="btn btn-success" onclick="showSettings()">Settings</button>
+        <button class="btn btn-danger" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Edit Profile Section -->
+    <div id="editProfileSection" class="mt-4">
+        <h2>Edit Profile</h2>
+        <form>
+          <label for="edit-photo-input">Profile Photo:</label>
+          <input type="file" id="edit-photo-input">
+          <br>
+  
+          <label for="edit-name-input">Name:</label>
+          <input type="text" id="edit-name-input">
+          <button class="btn btn-primary" type="button" onclick="saveEdit('name')">Save Name</button>
+          <br>
+  
+          <label for="edit-phone-input">Phone Number:</label>
+          <input type="text" id="edit-phone-input">
+          <button class="btn btn-primary" type="button" onclick="saveEdit('phone')">Save Phone</button>
+          <br>
+  
+          <label for="edit-place-input">Place:</label>
+          <input type="text" id="edit-place-input">
+          <button class="btn btn-primary" type="button" onclick="saveEdit('place')">Save Place</button>
+          <br>
+  
+          <label for="edit-email-input">Email:</label>
+          <input type="email" id="edit-email-input">
+          <button class="btn btn-primary" type="button" onclick="saveEdit('email')">Save Email</button>
+          <br>
+  
+          <label for="edit-languages-input">Languages:</label>
+          <input type="text" id="edit-languages-input">
+          <button class="btn btn-primary" type="button" onclick="saveEdit('languages')">Save Languages</button>
+          <br>
+  
+          <button class="btn btn-success" onclick="saveEdits()">Save</button>
+          <button class="btn btn-secondary" onclick="cancelEdits()">Back</button>
+          <button class="btn btn-danger" onclick="logout()">Logout</button>
+        </form>
+      </div>
+  
+      <!-- Documents Section -->
+      <div id="documentsSection" class="mt-4">
+        <h2>Documents</h2>
+        <div class="doc">
+          <input type="text" id="password" placeholder="Enter Your Password">
+          <input type="submit">
+          <br> <br>
+          <input type="file">
+          <input type="submit">
+        </div>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Sl. No</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>File</th>
+              <th>Comment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example rows (replace with actual data) -->
+            <tr>
+              <td>1</td>
+              <td>Document 1</td>
+              <td>2024-01-15</td>
+              <td><a href="document1.pdf" target="_blank">Download</a></td>
+              <td>Comment 1</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Document 2</td>
+              <td>2024-01-16</td>
+              <td><a href="document2.pdf" target="_blank">Download</a></td>
+              <td>Comment 2</td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+
+    <!-- Chat Section -->
+    <div id="chatSection" class="mt-4">
+      <h2>Chat</h2>
+      <ul id="chatMessages"></ul>
+      <input type="text" id="messageInput" placeholder="Type your message...">
+      <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+  
+
+    <!-- Reminder Modal -->
+<div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="reminderModalLabel" aria-hidden="true">
+<!-- Reminder Modal content -->
+</div>
+
+<!-- FullCalendar JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- FullCalendar JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+</body>
 </html>
-
 <script>
-  var calendarInitialized = false;
-    var chatMessages = [];
-
-    function showCalendar() {
-      hideAllSections();
-      document.getElementById("calendarSection").style.display = "block";
-
-      if (!calendarInitialized) {
-        $('#fullCalendar').fullCalendar({
-          header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,basicWeek,basicDay'
-          },
-          events: []
+    document.getElementById("homeLink").addEventListener("click", function () {
+          window.location.href = "http://127.0.0.1:5500/practice.html/client.html/ex1.html"; // Replace with your actual home page URL
         });
-
-        calendarInitialized = true;
+  
+    var calendarInitialized = false;
+      var chatMessages = [];
+  
+      function showCalendar() {
+        hideAllSections();
+        document.getElementById("calendarSection").style.display = "block";
+  
+        if (!calendarInitialized) {
+          $('#fullCalendar').fullCalendar({
+            header: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'month,basicWeek,basicDay'
+            },
+            events: []
+          });
+  
+          calendarInitialized = true;
+        }
       }
-    }
-
-    function openReminderModal() {
-      $('#reminderModal').modal('show');
-    }
-
-    function showProfile() {
-      hideAllSections();
-      document.getElementById("profileSection").style.display = "block";
-    }
-
-    function showSettings() {
-      hideAllSections();
-      document.getElementById("editProfileSection").style.display = "block";
-    }
-
-    function showDocuments() {
-      hideAllSections();
-      document.getElementById("documentsSection").style.display = "block";
-    }
-
-    function showChat() {
-      hideAllSections();
-      document.getElementById("chatSection").style.display = "block";
-      displayChatMessages();
-    }
-
-    function sendMessage() {
-      var messageInput = document.getElementById("messageInput");
-      var message = messageInput.value;
-      if (message.trim() !== "") {
-        chatMessages.push({ sender: "user", message: message });
-        messageInput.value = "";
+  
+      function openReminderModal() {
+        $('#reminderModal').modal('show');
+      }
+  
+      function showProfile() {
+        hideAllSections();
+        document.getElementById("profileSection").style.display = "block";
+      }
+  
+      function showSettings() {
+        hideAllSections();
+        document.getElementById("editProfileSection").style.display = "block";
+      }
+  
+      function showDocuments() {
+        hideAllSections();
+        document.getElementById("documentsSection").style.display = "block";
+      }
+  
+      function showChat() {
+        hideAllSections();
+        document.getElementById("chatSection").style.display = "block";
         displayChatMessages();
       }
-    }
-
-    function displayChatMessages() {
-      var chatMessagesContainer = document.getElementById("chatMessages");
-      chatMessagesContainer.innerHTML = "";
-      chatMessages.forEach(function (msg) {
-        var listItem = document.createElement("li");
-        listItem.className = "message";
-        listItem.textContent = msg.sender + ": " + msg.message;
-        chatMessagesContainer.appendChild(listItem);
-      });
-      // Scroll to the bottom to show the latest message
-      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-    }
-
-    function saveEdit(field) {
-      alert("Saved " + field);
-    }
-
-    function saveEdits() {
-      alert("Profile edits saved");
-      showProfile();
-    }
-
-    function cancelEdits() {
-      showProfile();
-    }
-
-    function logout() {
-      alert("Logout successful");
-    }
-
-    function hideAllSections() {
-      document.getElementById("profileSection").style.display = "none";
-      document.getElementById("editProfileSection").style.display = "none";
-      document.getElementById("documentsSection").style.display = "none";
-      document.getElementById("chatSection").style.display = "none";
-    }
-
-    function showAdvocateOptions() {
-      var advocateOptionsHeader = document.getElementById("advocateOptionsHeader");
-      var advocateOptionsList = document.getElementById("advocateOptionsList");
-
-      if (advocateOptionsHeader.style.display === "none") {
-        advocateOptionsHeader.style.display = "block";
-        advocateOptionsList.style.display = "block";
+  
+      function sendMessage() {
+        var messageInput = document.getElementById("messageInput");
+        var message = messageInput.value;
+        if (message.trim() !== "") {
+          chatMessages.push({ sender: "user", message: message });
+          messageInput.value = "";
+          displayChatMessages();
+        }
+      }
+  
+      function displayChatMessages() {
+        var chatMessagesContainer = document.getElementById("chatMessages");
+        chatMessagesContainer.innerHTML = "";
+        chatMessages.forEach(function (msg) {
+          var listItem = document.createElement("li");
+          listItem.className = "message";
+          listItem.textContent = msg.sender + ": " + msg.message;
+          chatMessagesContainer.appendChild(listItem);
+        });
+        // Scroll to the bottom to show the latest message
+        chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+      }
+  
+      function saveEdit(field) {
+        alert("Saved " + field);
+      }
+  
+      function saveEdits() {
+        alert("Profile edits saved");
+        showProfile();
+      }
+  
+      function cancelEdits() {
+        showProfile();
+      }
+  
+      function logout() {
+        alert("Logout successful");
+      }
+  
+      function hideAllSections() {
+        document.getElementById("profileSection").style.display = "none";
+        document.getElementById("editProfileSection").style.display = "none";
+        document.getElementById("documentsSection").style.display = "none";
+        document.getElementById("chatSection").style.display = "none";
+      }
+  
+      function showAdvocateOptions() {
+        var advocateOptionsHeader = document.getElementById("advocateOptionsHeader");
+        var advocateOptionsList = document.getElementById("advocateOptionsList");
+  
+        if (advocateOptionsHeader.style.display === "none") {
+          advocateOptionsHeader.style.display = "block";
+          advocateOptionsList.style.display = "block";
+        } else {
+          advocateOptionsHeader.style.display = "none";
+          advocateOptionsList.style.display = "none";
+        }
+      }
+  
+      function showHighCourtOptions() {
+        var highCourtOptionsList = document.getElementById("highCourtOptionsList");
+  
+        if (highCourtOptionsList.style.display === "none") {
+          highCourtOptionsList.style.display = "block";
+        } else {
+          highCourtOptionsList.style.display = "none";
+        }
+      }
+  
+      function showDistrictCourtOptions() {
+        var districtCourtOptionsList = document.getElementById("districtCourtOptionsList");
+  
+        if (districtCourtOptionsList.style.display === "none") {
+          districtCourtOptionsList.style.display = "block";
+        } else {
+          districtCourtOptionsList.style.display = "none";
+        }
+      }
+  
+    function showDistrictOptions(state) {
+      var districtOptionsList = document.getElementById(state + 'DistrictOptions');
+  
+      if (districtOptionsList.style.display === "none") {
+        districtOptionsList.style.display = "block";
       } else {
-        advocateOptionsHeader.style.display = "none";
-        advocateOptionsList.style.display = "none";
+        districtOptionsList.style.display = "none";
       }
     }
-
-    function showHighCourtOptions() {
-      var highCourtOptionsList = document.getElementById("highCourtOptionsList");
-
-      if (highCourtOptionsList.style.display === "none") {
-        highCourtOptionsList.style.display = "block";
-      } else {
-        highCourtOptionsList.style.display = "none";
-      }
+    function showCaseStatus() {
+      // Create a new page with "Case status:" text and an input text box
+      var content = document.getElementById('content');
+      content.innerHTML = `
+        <h2>Case Status</h2>
+        <p>Case status:</p>
+        <input type="text" id="cnrNumber" placeholder="Enter CNR number">
+        <input type="submit">
+        <table>
+          <thead>
+            <tr>
+              <th>Sl. No</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Case File</th>
+              <th>Comment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example rows (replace with actual data) -->
+            <tr>
+              <td>1</td>
+              <td>Case Name</td>
+              <td>2024-01-15</td>
+              <td><a href="document1.pdf" target="_blank">Download</a></td>
+              <td>Comment 1</td>
+            </tr>
+          </tbody>
+        </table>
+      `;
     }
-
-    function showDistrictCourtOptions() {
-      var districtCourtOptionsList = document.getElementById("districtCourtOptionsList");
-
-      if (districtCourtOptionsList.style.display === "none") {
-        districtCourtOptionsList.style.display = "block";
-      } else {
-        districtCourtOptionsList.style.display = "none";
-      }
-    }
-
-  function showDistrictOptions(state) {
-    var districtOptionsList = document.getElementById(state + 'DistrictOptions');
-
-    if (districtOptionsList.style.display === "none") {
-      districtOptionsList.style.display = "block";
-    } else {
-      districtOptionsList.style.display = "none";
-    }
-  }
-</script>
+  </script>
+  
+  
+ 
