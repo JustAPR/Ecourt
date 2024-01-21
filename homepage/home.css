@@ -132,8 +132,8 @@ nav .bi{
         font-size: 22px;
     
     }
-    .nav-link ul li{
-        
+    .nav-link ul li a{
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         display: block;
         color: #160370;
 
