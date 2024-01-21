@@ -1,0 +1,24 @@
+{
+  "name": "Ecourt",
+  "version": "1.0.0",
+  "description": "Welcome to *CaseSphere* – a comprehensive e-portal designed for efficient and effective case management. This platform is tailored for legal professionals, people seeking a streamlined approach to manage, track, and report on various cases.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustAPR/Ecourt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustAPR/Ecourt/issues"
+  },
+  "homepage": "https://github.com/JustAPR/Ecourt#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.3"
+  }
+}
