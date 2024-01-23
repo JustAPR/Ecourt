@@ -63,10 +63,10 @@ app.post("/login", async (req, res) => {
         res.redirect("/client.html")
       }
     } else {
-      res.redirect("/?error=invalid_credentials");
+      res.redirect("/x?error=invalid_credentials");
     }
   } catch (error) {
-    res.redirect("/?error=server_error");
+    res.redirect("/x?error=server_error");
   }
 });
 app.post("/signup", async (req, res) => {
@@ -89,7 +89,7 @@ app.post("/signup", async (req, res) => {
       .findOne({ $or: [{ username: username }, { email: email }] });
 
     if (existingUser) {
-      res.redirect("/?signup=failure");
+      res.redirect("/x?signup=failure");
       // res.render('login', { dols:'',mol: 'User with the given username or email already exists.',showSignup: true  });
     } else {
       await db
@@ -100,7 +100,7 @@ app.post("/signup", async (req, res) => {
           password: password,
           type: userType,
         });
-      res.redirect("/?signup=success");
+      res.redirect("/x?signup=success");
       // res.render('login', { dols: 'Signup successful. Please login.',mol:'',showSignup: false  });
     }
   } catch (error) {

@@ -381,8 +381,15 @@
 
 </body>
 
+
 </html>
 <script>
+  function hideAllSections() {
+    document.getElementById("profileSection").style.display = "none";
+    document.getElementById("editProfileSection").style.display = "none";
+    document.getElementById("documentsSection").style.display = "none";
+    document.getElementById("chatSection").style.display = "none";
+  }
   document.getElementById("homeLink").addEventListener("click", function () {
     window.location.href = "http://127.0.0.1:5500/practice.html/client.html/ex1.html"; // Replace with your actual home page URL
   });
@@ -473,14 +480,8 @@
     alert("Logout successful");
   }
 
-  function hideAllSections() {
-    document.getElementById("profileSection").style.display = "none";
-    document.getElementById("editProfileSection").style.display = "none";
-    document.getElementById("documentsSection").style.display = "none";
-    document.getElementById("chatSection").style.display = "none";
-  }
-
   function showAdvocateOptions() {
+    hideAllSections();
     var advocateOptionsHeader = document.getElementById("advocateOptionsHeader");
     var advocateOptionsList = document.getElementById("advocateOptionsList");
 
