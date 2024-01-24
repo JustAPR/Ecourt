@@ -27,6 +27,8 @@ body {
     /* second grid row containing */
        " sidebar main ";
     height: 100vh; 
+    position: fixed;
+    width:100%;
 }
 .header{
     grid-area:header;
@@ -169,18 +171,12 @@ font-size: 50px;
     
     .sidebar-title > span{
         display: inline;
-    }    
-}
-/* #sidebar{
-    display: none;
-}
-.menu-icon{
-    display: inline;
+    } 
+    .grid-container {
+        position:fixed;
+    }
 }
 
-.sidebar-title > span{
-    display: inline;
-} */
 @media screen  and (max-width: 768px){
     /* .main-cards{
         grid-template-columns: 1fr;
@@ -191,9 +187,15 @@ font-size: 50px;
         grid-template-columns: 1fr;
         margin-top: 30px;
     }
+     .grid-container {
+        position:fixed;
+    }
 }
 @media screen and(max-width: 576px) {
     .header-left{
         display: none;
+    }
+     .grid-container {
+        position:fixed;
     }
 }
