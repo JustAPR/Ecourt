@@ -1,7 +1,7 @@
-# CaseSphere: E-Portal for Case Management
+# CaseFlow Hub: E-Portal for Case Management
 
 ## Introduction
-Welcome to *CaseSphere* – a comprehensive e-portal designed for efficient and effective case management. This platform is tailored for legal professionals, people seeking a streamlined approach to manage, track, and report on various cases.
+Welcome to *CaseFlow Hub* – a comprehensive e-portal designed for efficient and effective case management. This platform is tailored for legal professionals, people seeking a streamlined approach to manage, track, and report on various cases.
 
 ## Features
 - **Case Tracking:** Real-time tracking of case statuses.
