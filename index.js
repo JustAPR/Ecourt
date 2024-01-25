@@ -6,10 +6,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.set('views', path.join(__dirname, 'Login'))
-app.use(express.static('public'))
+app.set("views", path.join(__dirname, "Login"));
+app.use(express.static("public"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/ecourt");
+mongoose.connect(
+  "mongodb+srv://prajayr1306:12qwaszxAPR@cluster0.lu2mazv.mongodb.net/ecourt?retryWrites=true&w=majority"
+);
 var db = mongoose.connection;
 
 app.get("/x", (req, res) => {
@@ -41,9 +43,9 @@ app.get("/x", (req, res) => {
     showSignup: showSignup,
   });
 });
-app.get("",(req,res)=>{
+app.get("", (req, res) => {
   res.render("home");
-})
+});
 app.post("/login", async (req, res) => {
   var mob = req.body.username;
   var pas = req.body.password;
@@ -59,11 +61,11 @@ app.post("/login", async (req, res) => {
 
       const userType = user.type;
       const welcomeMessage = welcomeMessages[userType] || "Unknown User Type";
-      if(userType == "1"){
-        res.redirect("/client.html")
+      if (userType == "1") {
+        res.redirect("/client.html");
       }
-      if(userType == "2"){
-        res.redirect("/ad.html")
+      if (userType == "2") {
+        res.redirect("/ad.html");
       }
     } else {
       res.redirect("/x?error=invalid_credentials");
@@ -95,14 +97,12 @@ app.post("/signup", async (req, res) => {
       res.redirect("/x?signup=failure");
       // res.render('login', { dols:'',mol: 'User with the given username or email already exists.',showSignup: true  });
     } else {
-      await db
-        .collection("users")
-        .insertOne({
-          username: username,
-          email: email,
-          password: password,
-          type: userType,
-        });
+      await db.collection("users").insertOne({
+        username: username,
+        email: email,
+        password: password,
+        type: userType,
+      });
       res.redirect("/x?signup=success");
       // res.render('login', { dols: 'Signup successful. Please login.',mol:'',showSignup: false  });
     }
