@@ -62,6 +62,9 @@ app.post("/login", async (req, res) => {
       if(userType == "1"){
         res.redirect("/client.html")
       }
+      if(userType == "2"){
+        res.redirect("/ad.html")
+      }
     } else {
       res.redirect("/x?error=invalid_credentials");
     }
