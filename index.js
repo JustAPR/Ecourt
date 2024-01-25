@@ -1,6 +1,8 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var path = require("path");
+const multer = require('multer');
+const fs = require('fs');
 
 const app = express();
 app.use(express.json());
@@ -8,7 +10,18 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "Login"));
 app.use(express.static("public"));
+const uploadDirectory = path.join(__dirname, 'uploads');
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, uploadDirectory);
+  },
+  filename: function (req, file, cb) {
+      cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage })
+;
 mongoose.connect(
   "mongodb+srv://prajayr1306:12qwaszxAPR@cluster0.lu2mazv.mongodb.net/ecourt?retryWrites=true&w=majority"
 );
@@ -62,7 +75,7 @@ app.post("/login", async (req, res) => {
       const userType = user.type;
       const welcomeMessage = welcomeMessages[userType] || "Unknown User Type";
       if (userType == "1") {
-        res.redirect("/client.html");
+        res.sendFile(path.join(__dirname, './public/client.html'))
       }
       if (userType == "2") {
         res.redirect("/ad.html");
@@ -117,7 +130,23 @@ app.post("/signup", async (req, res) => {
     });
   }
 });
-
+app.post('/upload', upload.single('uploadedFile'), (req, res) => {
+  res.redirect('/client.html');
+});
+app.get('/files', (req, res) => {
+  fs.readdir(uploadDirectory, (err, files) => {
+      if (err) {
+          res.status(500).send('Error reading files');
+      } else {
+          res.json(files);
+      }
+  });
+});
+app.get('/download/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const filepath = path.join(uploadDirectory, filename);
+  res.download(filepath);
+});
 app.listen(3001, () => {
   console.log("Server started on 3000");
 });

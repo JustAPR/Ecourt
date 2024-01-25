@@ -280,46 +280,22 @@
     </div>
 
     <!-- Documents Section -->
-    <div id="documentsSection" class="mt-4">
-      <h2>Documents</h2>
-      <div class="doc">
-        <input type="text" id="password" placeholder="Enter Your Password">
-        <input type="submit">
-        <br> <br>
-        <input type="file">
-        <input type="submit">
-      </div>
+    <div id="documentsSection">
+      <h2>Upload and View Documents</h2>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+          <input type="file" name="uploadedFile">
+          <input type="submit" value="Upload">
+      </form>
 
-      <table>
-        <thead>
+      <h3>Uploaded Documents</h3>
+      <table id="uploadedDocumentsTable">
           <tr>
-            <th>Sl. No</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>File</th>
-            <th>Comment</th>
+              <th>File Name</th>
+              <th>Download</th>
           </tr>
-        </thead>
-        <tbody>
-          <!-- Example rows (replace with actual data) -->
-          <tr>
-            <td>1</td>
-            <td>Document 1</td>
-            <td>2024-01-15</td>
-            <td><a href="document1.pdf" target="_blank">Download</a></td>
-            <td>Comment 1</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Document 2</td>
-            <td>2024-01-16</td>
-            <td><a href="document2.pdf" target="_blank">Download</a></td>
-            <td>Comment 2</td>
-          </tr>
-          <!-- Add more rows as needed -->
-        </tbody>
+          <!-- Rows will be added here dynamically -->
       </table>
-    </div>
+  </div>
 
 </body>
 
@@ -390,7 +366,29 @@ function showDistrictOptions(state) {
   var districtOptionsList = document.getElementById(state + 'DistrictOptions');
   districtOptionsList.style.display = districtOptionsList.style.display === "none" ? "block" : "none";
 }
+function updateDocumentsTable() {
+  fetch('/files')
+      .then(response => response.json())
+      .then(files => {
+          const table = document.getElementById('uploadedDocumentsTable');
+          table.innerHTML = '<tr><th>File Name</th><th>Download</th></tr>'; // Reset table
+          files.forEach((file, index) => {
+              const row = table.insertRow(-1);
+              const fileNameCell = row.insertCell(0);
+              const downloadCell = row.insertCell(1);
+              fileNameCell.textContent = file;
 
+              // Create a download link
+              const downloadLink = document.createElement('a');
+              downloadLink.href = `/download/${file}`;
+              downloadLink.textContent = 'Download';
+              downloadLink.download = file;
+              downloadCell.appendChild(downloadLink);
+          });
+      })
+      .catch(error => console.error('Error fetching files:', error));
+}
+document.addEventListener('DOMContentLoaded', updateDocumentsTable);
 function showCaseStatus() {
   hideAllSections();
   document.getElementById("content").style.display = "block";
