@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add your other CSS links here -->
+    <title>Profile Page</title>
+    <style>
+        #profileSection {
+            text-align: center;
+            padding-bottom: 30px;
+            padding-top: 30px;
+            border: 2px solid black;
+            /* Add border style */
+            border-radius: 10px;
+            /* Optional: Add border-radius for rounded corners */
+            margin: 50px auto;
+            /* Center the box horizontally with margin */
+            max-width: 400px;
+            /* Optional: Set a maximum width */
+        }
+
+        #editProfileSection {
+            text-align: center;
+            margin-top: 50px;
+            border: 2px solid black;
+            /* Add border style */
+            border-radius: 10px;
+            /* Optional: Add border-radius for rounded corners */
+            padding-top: 30px;
+            padding-bottom: 30px;
+            margin: 40px auto;
+            /* Center the box horizontally with margin */
+            max-width: 600px;
+            /* Optional: Set a maximum width */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html" id="homeLink">🏛️</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="profileSection" class="mt-4">
+        <h2>User Profile</h2>
+        <img id="profile-photo" src="default-profile-photo.jpg" alt="Profile Photo">
+        <p id="profile-name">Name: Sathwik</p>
+        <p id="profile-phone">Phone: 8142280105</p>
+        <p id="profile-place">Place: Hyderabad, India</p>
+        <p id="profile-email">Email: sathwik@gmail.com</p>
+        <p id="profile-languages">Languages: English, Telugu</p>
+        <!-- Settings and Logout Buttons -->
+        <button class="btn btn-success" onclick="showSettings()">Settings</button>
+        <button class="btn btn-danger" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Edit Profile Section -->
+    <div id="editProfileSection" class="mt-4" style="display: none;">
+        <h2>Edit Profile</h2>
+        <form>
+            <label for="edit-photo-input">Profile Photo:</label>
+            <input type="file" id="edit-photo-input">
+            <br>
+
+            <label for="edit-name-input">Name:</label>
+            <input type="text" id="edit-name-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('name')">Save Name</button>
+            <br>
+            <hr>
+            <label for="edit-phone-input">Phone:</label>
+            <input type="text" id="edit-phone-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('phone')">Save Phone</button>
+            <br>
+            <hr>
+            <label for="edit-place-input">Place:</label>
+            <input type="text" id="edit-place-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('place')">Save Place</button>
+            <br>
+            <hr>
+            <label for="edit-email-input">Email:</label>
+            <input type="email" id="edit-email-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('email')">Save Email</button>
+            <br>
+            <hr>
+
+            <label for="edit-languages-input">Languages:</label>
+            <input type="text" id="edit-languages-input">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('languages')">Save Languages</button>
+            <br>
+            <br>
+            <button class="btn btn-success" onclick="saveEdits()">Save</button>
+            <button class="btn btn-secondary" onclick="cancelEdits()">Back</button>
+            <button class="btn btn-danger" onclick="logout()">Logout</button>
+        </form>
+    </div>
+
+    <script>
+        function showSettings() {
+            // Toggle visibility of profile and editProfile sections
+            var profileSection = document.getElementById('profileSection');
+            var editProfileSection = document.getElementById('editProfileSection');
+
+            if (editProfileSection.style.display === 'none') {
+                profileSection.style.display = 'none';
+                editProfileSection.style.display = 'block';
+            } else {
+                profileSection.style.display = 'block';
+                editProfileSection.style.display = 'none';
+            }
+        }
+
+        // Function to save edits (You can implement as needed)
+        function saveEdits() {
+            // Your save edits logic here
+        }
+
+        // Function to cancel edits (You can implement as needed)
+        function cancelEdits() {
+            // Your cancel edits logic here
+        }
+
+        // Function to handle logout (You can implement as needed)
+        function logout() {
+            // Your logout logic here
+        }
+    </script>
+</body>
+
+</html>

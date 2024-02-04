@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add your other CSS links here -->
+    <title>Profile Page</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html" id="homeLink">🏛️</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div id="advocates">
+            <!-- Advocates List -->
+            <!-- <h2 id="advocateOptionsHeader" style="display: none;">Advocates</h2> -->
+            <!-- <ul id="advocateOptionsList" class="list-group" style="display: none;"> -->
+            <li class="list-group-item"><a href="lawyers.html">Supreme Court</a></li>
+            <li class="list-group-item">
+                <a href="#" onclick="showHighCourtOptions()">High Court</a>
+                <ul id="highCourtOptionsList" style="display: none;">
+                    <li class="list-group-item"><a href="#">Allahabad High Court</a></li>
+                    <li class="list-group-item"><a href="#">Andhra Pradesh High Court</a></li>
+                    <li class="list-group-item"><a href="#">Bombay High Court</a></li>
+                    <li class="list-group-item"><a href="#">Calcutta High Court</a></li>
+                    <li class="list-group-item"><a href="#">Chhattisgarh High Court</a></li>
+                    <li class="list-group-item"><a href="#">Delhi High Court</a></li>
+                    <li class="list-group-item"><a href="#">Gauhati High Court</a></li>
+                    <li class="list-group-item"><a href="#">Himachal Pradesh High Court</a></li>
+                    <li class="list-group-item"><a href="#">Jammu & Kashmir High Court</a></li>
+                    <li class="list-group-item"><a href="#">Jharkhand High Court</a></li>
+                    <li class="list-group-item"><a href="#">Karnataka High Court</a></li>
+                    <li class="list-group-item"><a href="#">Kerala High Court</a></li>
+                    <li class="list-group-item"><a href="#">Madhya Pradesh High Court</a></li>
+                    <li class="list-group-item"><a href="#">Madras High Court</a></li>
+                    <li class="list-group-item"><a href="#">Manipur High Court</a></li>
+                    <li class="list-group-item"><a href="#">Meghalaya High Court</a></li>
+                    <li class="list-group-item"><a href="#">High Court of Orissa</a></li>
+                    <li class="list-group-item"><a href="#">Patna High Court</a></li>
+                    <li class="list-group-item"><a href="#">Punjab & Haryana High Court</a></li>
+                    <li class="list-group-item"><a href="#">Rajasthan High Court</a></li>
+                    <li class="list-group-item"><a href="#">Sikkim High Court</a></li>
+                    <li class="list-group-item"><a href="#">Telangana High Court</a></li>
+                    <li class="list-group-item"><a href="#">Tripura High Court</a></li>
+                    <li class="list-group-item"><a href="#">Uttarakhand High Court</a></li>
+                </ul>
+            </li>
+            <li class="list-group-item">
+                <a href="#" onclick="showDistrictCourtOptions()">District Court</a>
+                <ul id="districtCourtOptionsList" style="display: none;">
+                    <li class="list-group-item">
+                        <a href="#" onclick="showDistrictOptions('Arunachal Pradesh')">Arunachal Pradesh</a>
+                        <ul id="arunachalPradeshDistrictOptions" style="display: none;">
+                            <li class="list-group-item"><a href="#">Anantapur</a></li>
+                            <li class="list-group-item"><a href="#">Chittoor</a></li>
+                            <li class="list-group-item"><a href="#">East Godavari</a></li>
+                            <!-- Add more districts as needed -->
+                        </ul>
+                    </li>
+                    <!-- Add more states as needed -->
+                    <li class="list-group-item"><a href="#">Assam</a></li>
+                    <li class="list-group-item"><a href="#">Bihar</a></li>
+                    <li class="list-group-item"><a href="#">Chhattisgarh</a></li>
+                    <li class="list-group-item"><a href="#">Goa</a></li>
+                    <li class="list-group-item"><a href="#">Gujarat</a></li>
+                    <li class="list-group-item"><a href="#">Haryana</a></li>
+                    <li class="list-group-item"><a href="#">Himachal Pradesh</a></li>
+                    <li class="list-group-item"><a href="#">Jharkhand</a></li>
+                    <li class="list-group-item"><a href="#">Karnataka</a></li>
+                    <li class="list-group-item"><a href="#">Kerala</a></li>
+                    <li class="list-group-item"><a href="#">Madhya Pradesh</a></li>
+                    <li class="list-group-item"><a href="#">Maharashtra</a></li>
+                    <li class="list-group-item"><a href="#">Manipur</a></li>
+                    <li class="list-group-item"><a href="#">Meghalaya</a></li>
+                    <li class="list-group-item"><a href="#">Mizoram</a></li>
+                    <li class="list-group-item"><a href="#">Nagaland</a></li>
+                    <li class="list-group-item"><a href="#">Odisha</a></li>
+                    <li class="list-group-item"><a href="#">Punjab</a></li>
+                    <li class="list-group-item"><a href="#">Rajasthan</a></li>
+                    <li class="list-group-item"><a href="#">Sikkim</a></li>
+                    <li class="list-group-item"><a href="#">Tamil Nadu</a></li>
+                    <li class="list-group-item"><a href="#">Telangana</a></li>
+                    <li class="list-group-item"><a href="#">Tripura</a></li>
+                    <li class="list-group-item"><a href="#">Uttar Pradesh</a></li>
+                    <li class="list-group-item"><a href="#">Uttarakhand</a></li>
+                    <li class="list-group-item"><a href="#">West Bengal</a></li>
+                    <li class="list-group-item"><a href="#">Jammu and Kashmir</a></li>
+                    <li class="list-group-item"><a href="#">Ladakh</a></li>
+                </ul>
+            </li>
+            </ul>
+            <!-- Add a table or list of advocates with details -->
+        </div>
+
+        <script>
+            function showAdvocateOptions() {
+                var advocateOptionsHeader = document.getElementById("advocateOptionsHeader");
+                var advocateOptionsList = document.getElementById("advocateOptionsList");
+
+                if (advocateOptionsHeader.style.display === "none") {
+                    advocateOptionsHeader.style.display = "block";
+                    advocateOptionsList.style.display = "block";
+                } else {
+                    advocateOptionsHeader.style.display = "none";
+                    advocateOptionsList.style.display = "none";
+                }
+            }
+
+            function showHighCourtOptions() {
+                var highCourtOptionsList = document.getElementById("highCourtOptionsList");
+
+                if (highCourtOptionsList.style.display === "none") {
+                    highCourtOptionsList.style.display = "block";
+                } else {
+                    highCourtOptionsList.style.display = "none";
+                }
+            }
+
+            function showDistrictCourtOptions() {
+                var districtCourtOptionsList = document.getElementById("districtCourtOptionsList");
+
+                if (districtCourtOptionsList.style.display === "none") {
+                    districtCourtOptionsList.style.display = "block";
+                } else {
+                    districtCourtOptionsList.style.display = "none";
+                }
+            }
+
+        </script>
+
+</body>
+
+</html>

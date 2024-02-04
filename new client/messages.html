@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>E-Court Case Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container-box {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .message-container {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .sender {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .reply-input {
+            margin-top: 10px;
+        }
+    </style>
+    <title>Message Interface</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html" id="homeLink">🏛️</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Back</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-box">
+        <div class="container">
+            <div class="message-container">
+                <div class="sender">Lawyer:</div>
+                <div>Hello, how can I assist you with your case?</div>
+            </div>
+
+            <div class="message-container">
+                <div class="sender">Judge:</div>
+                <div>Please submit the required documents by the end of this week.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-box">
+        <div class="container">
+            <label for="recipientSelect">Select Recipient:</label>
+            <select id="recipientSelect" class="form-control">
+                <option value="Lawyer">Lawyer</option>
+                <option value="Judge">Judge</option>
+            </select>
+            <br>
+            <h4>Reply:</h4>
+            <textarea id="replyTextarea" class="form-control" rows="3"></textarea>
+            <button class="btn btn-primary reply-input" onclick="replyToMessage()">Reply</button>
+        </div>
+    </div>
+
+    <script>
+        function replyToMessage() {
+            const recipient = document.getElementById('recipientSelect').value;
+            const replyText = document.getElementById('replyTextarea').value;
+
+            if (replyText.trim() !== '') {
+                const replyContainer = document.createElement('div');
+                replyContainer.classList.add('message-container');
+
+                const sender = document.createElement('div');
+                sender.classList.add('sender');
+                sender.textContent = `You to ${recipient}:`;
+
+                const message = document.createElement('div');
+                message.textContent = replyText;
+
+                replyContainer.appendChild(sender);
+                replyContainer.appendChild(message);
+
+                document.querySelector('.container').appendChild(replyContainer);
+
+                // Clear the reply input
+                document.getElementById('replyTextarea').value = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

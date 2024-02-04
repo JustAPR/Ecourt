@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container-box {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .cnr {
+            border: 1px solid black;
+            padding-left: 50px;
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="submit"] {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <title>Case Status</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html" id="homeLink">🏛️</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Back</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-box">
+        <div class="container">
+            <div class="cnr" id="passwordForm">
+                <h2>Documents</h2>
+                <form onsubmit="submitPassword(event)">
+                    <label for="cnrNumber">Password:</label>
+                    <input type="password" id="cnrNumber" placeholder="Enter password" required>
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </form>
+            </div>
+
+            <div id="tablesContainer" class="hidden">
+                <h3>Case Details</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sl. No</th>
+                            <th>Case Name</th>
+                            <th>Date of Case</th>
+                            <th>Case File</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example rows (replace with actual data) -->
+                        <tr>
+                            <td>1</td>
+                            <td>Case Name</td>
+                            <td>2024-01-15</td>
+                            <td><a href="document1.pdf" target="_blank">Download</a></td>
+                            <td>Comment 1</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Court Orders</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sl. No</th>
+                            <th>Court Name</th>
+                            <th>Order Date</th>
+                            <th>Court Order File</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example rows (replace with actual data) -->
+                        <tr>
+                            <td>1</td>
+                            <td>Case Name</td>
+                            <td>2024-01-15</td>
+                            <td><a href="document1.pdf" target="_blank">Download</a></td>
+                            <td>Comment 1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitPassword(event) {
+            event.preventDefault();
+            const password = document.getElementById('cnrNumber').value;
+
+            // Replace 'yourpassword' with the actual password you want to check
+            if (password === '1234') {
+                document.getElementById('passwordForm').style.display = 'none';
+                document.getElementById('tablesContainer').classList.remove('hidden');
+            } else {
+                alert('Invalid password. Please try again.');
+            }
+        }
+    </script>
+</body>
+
+</html>

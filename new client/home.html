@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>E-Court Case Management</title>
+    <style>
+        /* Slider container */
+        .slider-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            margin-top: 10px;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        /* Slides */
+        .slider-container .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            /* Set the same height as the slider container */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Slide 1 */
+        .slider-container .slide:nth-child(1) {
+            background-image: url('image1.jpg');
+        }
+
+        /* Slide 2 */
+        .slider-container .slide:nth-child(2) {
+            background-image: url('image2.jpg');
+        }
+
+        /* Slide 3 */
+        .slider-container .slide:nth-child(3) {
+            background-image: url('image1.jpg');
+        }
+
+        /* Show active slide */
+        .slider-container .slide.active {
+            opacity: 1;
+        }
+
+        /* Container for the entire layout using flexbox */
+        #container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Style for the NEWS & EVENTS box */
+        #news-events-box {
+            background-color: #3498db;
+            /* Blue color */
+            color: #ffffff;
+            /* White text color */
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* Style for the border box with an empty list */
+        #empty-box {
+            border: 1px solid #151515;
+            /* Blue border */
+            height: 150px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .row row-cols-1 row-cols-md-3 g-4 {
+            margin-top: 5%;
+            display: flex;
+            justify-content: center;
+        }
+
+        a {
+            text-align: right;
+            text-decoration-color: blueviolet;
+        }
+
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            /* You can adjust the width as needed */
+            height: 200px;
+            /* You can adjust the height as needed */
+            border: 1px solid #ccc;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 20px 0px rgba(21, 1, 1, 0.904);
+        }
+
+        #profileSection {
+            display: none;
+            /* Hide profile section by default */
+            text-align: center;
+            /* Center the content horizontally */
+            margin-top: 50px;
+            /* Adjust the top margin for vertical centering */
+            border: 1px solid #ccc;
+            /* Thin border around the profile section */
+            padding: 20px;
+            /* Add padding for spacing */
+            border-radius: 8px;
+            /* Optional: Add border-radius for rounded corners */
+        }
+
+        #profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 10px auto;
+        }
+
+        #editProfileSection {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+
+        /* #content {
+    text-align: center;
+} */
+
+        .doc {
+            border: 1px solid black;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .shop {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            background-color: #e2e7e6;
+        }
+
+        .box {
+            height: 250px;
+            width: 24%;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: white;
+            padding: 20px 0px 15px;
+            margin-top: 15px;
+            margin-right: 15px;
+        }
+
+        .boximg {
+            height: 120px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .boxcontent {
+            margin-left: 10px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .boxcontent a {
+            margin-left: 10px;
+            margin-right: 10px;
+            /* text-align: center; */
+            text-decoration: none;
+            color: black;
+        }
+
+
+        .footer {
+            width: 100%;
+            padding: 30px 0;
+            text-align: center;
+            border-top: #0d0d0d solid 5px;
+        }
+
+        .footer h4 {
+            margin-bottom: 25px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .icon .bi {
+            color: #0d0d0d;
+            margin: 0 13px;
+            cursor: pointer;
+            padding: 18px 0;
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html" id="homeLink">E-Court Client Portal 🏛️</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">Profile</a>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="slider-container">
+        <div class="slide active"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+    </div>
+
+    <div id="container">
+
+        <!-- NEWS & EVENTS box -->
+        <div id="news-events-box">
+            <h5>NEWS & EVENTS</h5>
+        </div>
+
+        <!-- Empty box with border and list -->
+        <div id="empty-box">
+            <ul>
+                <!-- You can add list items here as needed -->
+            </ul>
+        </div>
+
+    </div>
+    <br>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <h5 class="card-title">Case status</h5>
+                <img src="image4.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <li class="nav-item">
+                        <a class="nav-link" href="casestatus.html" onclick="showCaseStatus()">To check CaseStatus click here</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <h5 class="card-title">Advocates</h5>
+                <img src="image3.jpg" class="card-img-top" alt="..." height="200px">
+                <div class="card-body">
+                    <li class="nav-item">
+                        <a class="nav-link" href="advocates.html" onclick="showAdvocateOptions()">Contact for advocates click here</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <h5 class="card-title">Calender</h5>
+                <img src="image5.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <li class="nav-item">
+                        <a class="nav-link" href="calender.html" onclick="showChat()">To check calender click here</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <h5 class="card-title">Documents</h5>
+                <img src="image6.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <li class="nav-item">
+                        <a class="nav-link" href="documents.html" onclick="showDocuments()">To check Documents click here</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <h5 class="card-title">Messages</h5>
+                <img src="image7.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <li class="nav-item">
+                        <a class="nav-link" href="messages.html" onclick="showDocuments()">For Messages click here</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <h5 class="card-title">About Client portal</h5>
+                <img src="image8.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <li class="nav-item">
+                        <a class="nav-link" href="clientportal.html" onclick="showDocuments()">know more on Client portal click here</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <section class="footer">
+        <h4>
+            FOLLOW US ON
+        </h4>
+        <p></p>
+        <div class="icon">
+            <i class="bi bi-facebook"></i>
+            <i class="bi bi-twitter"></i>
+            <i class="bi bi-instagram"></i>
+            <i class="bi bi-linkedin"></i>
+
+        </div>
+        <p>
+
+            madewith &hearts; with caseflowhub <br>
+            &#169; 1996-2023, e-portal.com, Inc. or its affiliates
+        </p>
+    </section>
+
+    <script>
+        // Auto slide function
+        function autoSlide() {
+            var slides = document.querySelectorAll('.slide');
+            var activeSlide = document.querySelector('.slide.active');
+
+            // Get the index of the active slide
+            var activeIndex = Array.prototype.indexOf.call(slides, activeSlide);
+
+            // Remove the active class from current slide
+            activeSlide.classList.remove('active');
+
+            // Increment the active index
+            activeIndex++;
+
+            // Wrap around to the first slide if necessary
+            if (activeIndex >= slides.length) {
+                activeIndex = 0;
+            }
+
+            // Add the active class to the next slide
+            slides[activeIndex].classList.add('active');
+        }
+
+        // Set interval for auto slide
+        setInterval(autoSlide, 3000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add your other CSS links here -->
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html" id="homeLink">🏛️</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="lawyers.html">Back</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <form id="caseDetailsForm">
+            <label for="casetype">casetype (civil/criminal):</label>
+            <input type="casetype" id="casetype" name="casetype" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+
+            <label for="introduction">Introduction:</label>
+            <textarea id="introduction" name="introduction" rows="4" required></textarea>
+
+            <label for="overview">Overview of the Case:</label>
+            <textarea id="overview" name="overview" rows="4" required></textarea>
+
+            <label for="parties">Parties Involved:</label>
+            <textarea id="parties" name="parties" rows="2" required></textarea>
+
+            <label for="legalIssues">Legal Issues:</label>
+            <textarea id="legalIssues" name="legalIssues" rows="4" required></textarea>
+
+            <label for="documentation">Documentation:</label>
+            <input type="file" id="documentation" name="documentation" multiple accept=".pdf, .doc, .docx">
+
+            <label for="questions">Key Questions:</label>
+            <textarea id="questions" name="questions" rows="4" required></textarea>
+
+            <label for="outcome">Desired Outcome:</label>
+            <textarea id="outcome" name="outcome" rows="4" required></textarea>
+
+            <label for="contactInfo">Contact Information:</label>
+            <input type="text" id="contactInfo" name="contactInfo" required>
+
+            <label for="confidentiality">1Confidentiality:</label>
+            <input type="checkbox" id="confidentiality" name="confidentiality">I request confidentiality</input>
+
+            <label for="consultation">Request for Consultation:</label>
+            <input type="datetime-local" id="consultation" name="consultation" required>
+
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
