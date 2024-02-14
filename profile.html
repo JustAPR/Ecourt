@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <metbutton charset="UTF-8">
+    <metbutton name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add your other CSS links here -->
+    <title>Profile Page</title>
+    <style>
+        #profileSection {
+            text-align: center;
+            padding-bottom: 30px;
+            padding-top: 30px;
+            border: 2px solid black;
+            /* Add border style */
+            border-radius: 10px;
+            /* Optional: Add border-radius for rounded corners */
+            margin: 50px auto;
+            /* Center the box horizontally with margin */
+            max-width: 300px;
+            /* Optional: Set button maximum width */
+
+        }
+        .btn{
+            margin-left:0px;
+        }
+
+        #editProfileSection {
+            align-content: normal;
+            margin-top: 50px;
+            border: 2px solid black;
+            /* Add border style */
+            border-radius: 10px;
+            /* Optional: Add border-radius for rounded corners */
+            padding-top: 30px;
+            padding-bottom: 30px;
+            margin: 40px auto;
+            /* Center the box horizontally with margin */
+            max-width: 400px;
+            /* Optional: Set button maximum width */
+        }
+        .container {
+    max-width: 700px;
+    margin: 30px auto;
+    /* background-color: #cec5c5; */
+    padding: 20px;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    height: 100vh;
+    overflow-y: auto;
+}
+
+h2 {
+    color: #333;
+}
+.form-control{
+    width:200px;
+    margin-left:40px;
+}
+form{
+    margin:20px;
+}
+   </style>
+</head>
+
+<body>
+    
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <a class="navbar-brand" href="home.html" id="homeLink">E-Court Advocate Portal 🏛️</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <a class="nav-link" href="profile.html">profile</a>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="home.html">↩️</a>
+                
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div id="profileSection" class="mt-4">
+        <h4 style="text-align: center;">Profile</h4>
+        <img id="profile-photo" src="default-profile-photo.jpg" alt="Profile Photo">
+
+        <div class="form-group">
+            <label for="plaintiff">State: TELANGANA</label>
+        </div>
+         <div class="form-group">
+            <label for="plaintiff">District: MEDCHAL</label>
+        </div>
+        
+                <!-- <div class="form-group">
+                    <label for="plaintiff">BAR registration number:</label>
+                </div> -->
+                <div class="form-group">
+                    <label for="plaintiff">Name: PSUPSV</label>
+                </div>
+                <div class="form-group">
+                    <label for="plaintiff">DOB: 15-08-2000</label>
+                </div><div class="form-group">
+                    <label for="plaintiff">Gender: MALE</label>
+                </div>
+                <div class="form-group">
+                    <label for="plaintiff"> Cases dealt with: ADMINISTRATIVE</label>
+                </div>
+                <div class="form-group">
+                    <label for="plaintiff">Years of experience: 18</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="plaintiff">COURT: HIGHCOURT</label>
+                </div>
+                <div class="form-group">
+                    <label for="plaintiff">Mobile Number: 9876543210</label>
+                </div>
+                <div class="form-group">
+                   
+                    <label for="defendantEmail">Email:psupsv@yahoo.com</label>
+                </div>
+                <button class="btn btn-success" onclick="showSettings()">Settings</button>
+        
+                <button class="btn btn-danger" onclick="logout()">Logout</button>
+   
+                
+        </div>
+       
+
+    <!-- Edit Profile Section -->
+    <div id="editProfileSection" class="mt-4" style="display: none;">
+        <h2>Edit Profile</h2>
+        <form>
+            <!-- <label for="edit-photo-input">Profile Photo:</label> -->
+            <input type="file"  placeholder =" Profile photo"id="edit-photo-input" > 
+            <br>
+            <hr>
+            <!-- <label for="edit-photo-input">State:</label> -->
+            <input type="text"  placeholder =" State"id="edit-photo-input" > 
+            <button class="btn btn-primary" type="button" onclick="saveEdit('State')">Save </button>
+
+            <br>
+            <hr>
+
+            <!-- <label for="edit-name-input">District:</label> -->
+            <input type="text"  placeholder ="District"id="edit-name-input"> 
+             <button class="btn btn-primary" type="button" onclick="saveEdit('district')">Save </button>
+            <br>
+            <hr>
+            <!-- <label for="edit-phone-input">Name:</label> -->
+            <input type="text"  placeholder ="Name"id="edit-phone-input" > 
+            <button class="btn btn-primary" type="button" onclick="saveEdit('name')">Save</button>
+            <br>
+            <hr>
+            <!-- <label for="edit-place-input">Case I deal:</label> -->
+            <input type="text"  placeholder ="case you deal"id="edit-place-input" > 
+            <button class="btn btn-primary" type="button" onclick="saveEdit('case')">Save </button>
+            <br>
+            <hr>
+            <!-- <label for="edit-email-input">Experience:</label> -->
+            <input type="email" placeholder ="experience" id="edit-email-input " >
+            <button class="btn btn-primary" type="button" onclick="saveEdit('experience')">Save </button>
+            <br>
+            <hr>
+
+            <!-- <label for="edit-languages-input">Court:</label> -->
+            <input type="text"  placeholder ="court"id="edit-languages-in p ut">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('court')">Save </button>
+            <br>
+            <hr>
+
+            <!-- <label for="edit-languages-input">Email:</label> -->
+            <input type="text"  placeholder ="Email"id="edit-languages-in p ut">
+            <button class="btn btn-primary" type="button" onclick="saveEdit('email')">Save </button>
+            <br>
+            <br>
+            <button class="btn btn-success" onclick="saveEdits()">Save</button>
+            <button class="btn btn-secondary" onclick="cancelEdits()">Back</button>
+            <button class="btn btn-danger" onclick="logout()">Logout</button>
+        </form>
+    </div>
+
+
+    <script>
+        function saveEdit(field) {
+    const newValue = document.getElementById(`${field}Input`).value;
+
+    // Your logic to save the edited value to the server
+    // You can use AJAX, Fetch API, or any other method to send the data to the server
+    console.log(`Saving ${field} as ${newValue}`);
+}
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+app.use(bodyParser.json());
+
+// Route to handle profile updates
+app.post('/update-profile', (req, res) => {
+    const updatedProfileData = req.body;
+    // Your logic to update the user's profile data in the database
+    // Respond with a success message or appropriate status code
+    res.send('Profile updated successfully');
+});
+
+// Start the server
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+
+
+        function showSettings() {
+            // Toggle visibility of profile and editProfile sections
+            var profileSection = document.getElementById('profileSection');
+            var editProfileSection = document.getElementById('editProfileSection');
+
+            if (editProfileSection.style.display === 'none') {
+                profileSection.style.display = 'none';
+                editProfileSection.style.display = 'block';
+            } else {
+                profileSection.style.display = 'block';
+                editProfileSection.style.display = 'none';
+            }
+        }
+
+        // Function to save edits (You can implement as needed)
+        function saveEdits() {
+            // Your save edits logic here
+        }
+
+        // Function to cancel edits (You can implement as needed)
+        function cancelEdits() {
+            // Your cancel edits logic here
+        }
+
+        // Function to handle logout (You can implement as needed)
+        function logout() {
+            // Your logout logic here
+        }
+    </script>
+</body>
+
+</html>

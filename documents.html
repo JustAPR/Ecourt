@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<style>
+ .body {
+      font-family: Arial, sans-serif;
+     
+  }
+  
+  h2 {
+      margin-top: 20px;
+  }
+  
+  #fileInput {
+      margin-bottom: 10px;
+  }
+  
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+  
+  thead th, tbody td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+  
+  thead th {
+      background-color: #f2f2f2;
+  }
+  
+  tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+  }
+  
+  tbody tr:hover {
+      background-color: #ddd;
+  }
+  
+</style>
+<body>
+    <div class="grid-container">
+      
+    <div class="container">
+        <!-- Heading -->
+        <h2 class="text-center">Add Document</h2>
+    
+        <!-- Document Form -->
+        <form action="Doc.html" method="post" enctype="multipart/form-data">
+            <!-- Input for document title -->
+            <div class="form-group">
+             <label for="documentTitle">Document Title:</label>
+             <input type="text" class="form-control" id="documentTitle" placeholder="Enter document title" required>
+           </div>
+     
+           <!-- Input for document description -->
+           <div class="form-group">
+             <label for="documentDescription">Document Description:</label>
+             <textarea class="form-control" id="documentDescription" rows="5" placeholder="Enter document description" required></textarea>
+           </div>
+     
+           <!-- Input for document file -->
+           <!-- <div class="form-group">
+             <label for="documentFile">Choose Document File:</label>
+             <input type="file" class="form-control-file" id="documentFile" multiple required>
+           </div> -->
+     <div class="form-group">
+        <label for="documentFile">Choose Document File:</label>
+             <input type="file" class="form-control-file" id="documentFile" multiple required>
+          
+        <button type="button" class="btn btn-primary btn-block" onclick="addDocument()">SUBMIT</button>
+        
+        <input type="submit" value="Details">
+    
+     </div>
+           </form>
+      </div>
+     
+     
+      <div class="body" id="uploadDetails" style="display: none;">
+        <h2>Upload Details</h2>
+        <table id="fileTable" border="1">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Date</th>
+                    <th>Document Title</th>
+                    <th>Document Description</th>
+                    <th>Uploaded Files</th>
+                </tr>
+            </thead>
+            <tbody id="fileTableBody">
+                <!-- File upload details will be displayed here -->
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      let uploadedFiles = []; // Array to store uploaded files
+      
+      // Function to add document
+      function addDocument() {
+          const documentTitle = document.getElementById('documentTitle').value;
+          const documentDescription = document.getElementById('documentDescription').value;
+          
+          // Check if title and description are filled
+          if (documentTitle.trim() === '' || documentDescription.trim() === '') {
+              alert('Please fill in both title and description fields.');
+              return;
+          }
+          
+          const fileInput = document.getElementById('documentFile');
+          const fileList = fileInput.files;
+          
+          // Adding each uploaded file to the array
+          for (let i = 0; i < fileList.length; i++) {
+              uploadedFiles.push({
+                  title: documentTitle,
+                  description: documentDescription,
+                  file: fileList[i],
+                  date: new Date().toLocaleString() // Add current date and time
+              });
+          }
+          
+          // Displaying uploaded files in the table
+          displayUploadedFiles();
+          
+          // Resetting form fields
+          document.getElementById('documentForm').reset();
+      }
+      
+      // Function to display uploaded files in the table
+      function displayUploadedFiles() {
+          const tableBody = document.getElementById('fileTableBody');
+          tableBody.innerHTML = ''; // Clearing previous content
+          
+          // Looping through uploaded files array
+          for (let i = 0; i < uploadedFiles.length; i++) {
+              const row = tableBody.insertRow();
+              const serialNumberCell = row.insertCell(0);
+              const dateCell = row.insertCell(1);
+              const documentTitleCell = row.insertCell(2);
+              const documentDescriptionCell = row.insertCell(3);
+              const uploadedFileCell = row.insertCell(4);
+              
+              serialNumberCell.textContent = i + 1;
+              dateCell.textContent = uploadedFiles[i].date;
+              documentTitleCell.textContent = uploadedFiles[i].title;
+              documentDescriptionCell.textContent = uploadedFiles[i].description;
+              uploadedFileCell.textContent = uploadedFiles[i].file.name;
+          }
+          
+          // Showing the upload details section
+          document.getElementById('uploadDetails').style.display = 'block';
+      }
+    </script>
+    <!-- Bootstrap JS and Popper.js for Bootstrap functionality -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

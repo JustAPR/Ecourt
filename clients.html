@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Case Portal - Notifications</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+
+</head>
+<style>
+    /* Reset styles */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: Arial, sans-serif;
+}
+
+header {
+background-color: #333;
+color: #fff;
+padding: 20px;
+text-align: center;
+}
+
+main {
+padding: 20px;
+}
+
+.request-item {
+background-color: #f9f9f9;
+padding: 10px;
+margin-bottom: 10px;
+border-radius: 5px;
+}
+
+.request-item h2 {
+margin-bottom: 5px;
+}
+
+.request-item p {
+margin-bottom: 10px;
+}
+
+.accept-button,
+.reject-button {
+padding: 8px 16px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.reject-button {
+background-color: #f44336;
+}
+
+.accept-button:hover,
+.reject-button:hover {
+background-color: #f3f3f3;
+color:black;
+}
+
+</style>
+<style>
+    /* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+.notification {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.popup-content {
+    max-width: 400px;
+}
+
+.popup-content .close {
+    float: right;
+    cursor: pointer;
+}
+
+.popup-content h2 {
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    margin-bottom: 10px;
+}
+
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html" id="homeLink">E-Court Advocate Portal 🏛️</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="nav-link" href="profile.html">profile</a>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">profile</a>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main id="notificationsContainer">
+        New requests:
+        <!-- Notifications will be dynamically generated here -->
+    </main>
+
+    <div id="descriptionPopup" class="popup">
+        
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2 id="caseType"></h2>
+            <p id="caseDescription"></p>
+            <p id="clientProfile"></p>
+            <button>
+                <a class="nav-link" href="detail.html" >Get Details</a>
+            </button>
+           
+
+        </div>
+        <div id="requestsList">
+          
+        </div>
+    </div>
+    <script >
+        // Sample request data (replace with actual data from the server)
+const requestData = {
+    caseType: "Property Dispute",
+    caseDescription: "Client claims ownership of a disputed property.",
+    clientProfile: "John Doe - Age: 35, Occupation: Engineer, Location: New York"
+};
+
+// Function to generate notification
+function generateNotification() {
+    const notificationsContainer = document.getElementById('notificationsContainer');
+
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.textContent = "👤 client name:";
+   
+
+    notification.onclick = function() {
+        openPopup();
+        showRequestDetails();
+    };
+
+    notificationsContainer.appendChild(notification);
+}
+
+// Function to show request details in popup
+function showRequestDetails() {
+    document.getElementById('caseType').textContent = requestData.caseType;
+    document.getElementById('caseDescription').textContent = requestData.caseDescription;
+    document.getElementById('clientProfile').textContent = requestData.clientProfile;
+}
+
+// Function to open popup
+function openPopup() {
+    document.getElementById('descriptionPopup').style.display = "block";
+}
+
+// Function to close popup
+function closePopup() {
+    document.getElementById('descriptionPopup').style.display = "none";
+}
+
+// Generate notification when the page loads
+document.addEventListener('DOMContentLoaded', function () {
+    generateNotification();
+});
+
+   // Sample request data (replace with actual data from the server)
+        const requestsData = [
+            {
+                id: 1,
+                clientName: "John Doe",
+                contactMethod: "Phone",
+                message: "Need to discuss legal advice regarding property dispute."
+            },
+            {
+                id: 2,
+                clientName: "Jane Smith",
+                contactMethod: "Email",
+                message: "Request for an appointment to discuss divorce proceedings."
+            }
+        ];
+        
+        // Function to render request items
+        function renderRequests() {
+            const requestsList = document.getElementById('requestsList');
+            requestsList.innerHTML = '';
+        
+            requestsData.forEach(request => {
+                const requestItem = document.createElement('div');
+                requestItem.classList.add('request-item');
+                requestItem.innerHTML = `
+                    <h2>${request.clientName}</h2>
+                    
+
+                    <p>Contact Method: ${request.contactMethod}</p>
+                    <p>${request.message}</p>
+                    <button class="accept-button" onclick="acceptRequest(${request.id})">Accept</button>
+                    <button class="reject-button" onclick="rejectRequest(${request.id})">Reject</button>
+                `;
+                requestsList.appendChild(requestItem);
+            });
+        }
+       
+        // Function to accept a request
+        function acceptRequest(requestId) {
+            // Perform action to accept the request (e.g., update database)
+            console.log(`Request ${requestId} accepted.`);
+        }
+        
+        // Function to reject a request
+        function rejectRequest(requestId) {
+            // Perform action to reject the request (e.g., update database)
+            console.log(`Request ${requestId} rejected.`);
+        }
+        
+        // Render requests when the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            renderRequests();
+        });
+        </script>
+</body>
+</html>

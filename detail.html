@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Case Details</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+        .popup .close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #aaa;
+        }
+
+        .popup h2 {
+            margin-bottom: 10px;
+        }
+
+        .popup h3 {
+            margin-bottom: 5px;
+        }
+
+        .popup p {
+            margin-bottom: 10px;
+        }
+
+        .popup ul {
+            margin-bottom: 10px;
+        }
+
+        .popup ul li {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Show Case Details</h1>
+    </header>
+    <main>
+        <button onclick="showDetails()">Show Details</button>
+        <div id="descriptionPopup" class="popup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Case Details</h2>
+            <h3>Case Type: Property Dispute</h3>
+            <p><strong>Subject:</strong> Ownership claim of disputed property</p>
+            <p><strong>Introduction:</strong> This case involves a dispute over the ownership of a property located at [address].</p>
+            <p><strong>Overview:</strong> The property was inherited by the plaintiff from their late relative. However, the defendant claims to have acquired ownership through adverse possession.</p>
+            <h4>Parties Involved:</h4>
+            <ul>
+                <li>John Doe (Plaintiff)</li>
+                <li>Jane Smith (Defendant)</li>
+            </ul>
+            <h4>Contact Information:</h4>
+            <p><strong>Plaintiff:</strong> John Doe - Email: john.doe@example.com, Phone: 123-456-7890</p>
+            <p><strong>Defendant:</strong> Jane Smith - Email: jane.smith@example.com, Phone: 987-654-3210</p>
+        </div>
+    </main>
+    <script>
+        function showDetails() {
+            const popup = document.getElementById('descriptionPopup');
+            popup.style.display = "block";
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('descriptionPopup');
+            popup.style.display = "none";
+        }
+    </script>
+</body>
+</html>

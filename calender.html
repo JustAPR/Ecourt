@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* padding: 20px; */
+        }
+
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        td {
+            cursor: pointer;
+        }
+
+        .note-container {
+            margin: 20px 0;
+        }
+
+        .note-input {
+            width: 80%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .note-button {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .select-container {
+            margin-bottom: 20px;
+        }
+    </style>
+    <title>Interactive Calendar</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html" id="homeLink">🏛️</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Back</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="text-center">Interactive Calendar</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="year">Select Year:</label>
+                    <select id="year" class="form-control" onchange="changeCalendar()">
+                        <!-- Dynamically populate the years -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="month">Select Month:</label>
+                    <select id="month" class="form-control" onchange="changeCalendar()">
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <table id="calendar" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="7" class="bg-primary" id="monthAndYear"></th>
+                </tr>
+                <tr>
+                    <th class="text-danger">Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th class="text-danger">Sat</th>
+                </tr>
+            </thead>
+            <tbody id="calendarBody"></tbody>
+        </table>
+
+        <div class="note-container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="noteDate">Select Date:</label>
+                        <input type="date" id="noteDate" class="form-control note-input">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="noteText">Add a note:</label>
+                <textarea id="noteText" rows="4" placeholder="Type your note here..." class="form-control note-input"></textarea>
+            </div>
+            <button onclick="saveNote()" class="btn btn-primary note-button">Save Note</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        const today = new Date();
+        let currentMonth = today.getMonth();
+        let currentYear = today.getFullYear();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            populateYears();
+            renderCalendar();
+        });
+
+        function populateYears() {
+            const yearDropdown = document.getElementById('year');
+            const startYear = today.getFullYear() - 10;
+            const endYear = today.getFullYear() + 10;
+
+            for (let year = startYear; year <= endYear; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearDropdown.appendChild(option);
+            }
+
+            yearDropdown.value = currentYear;
+        }
+
+        function changeCalendar() {
+            currentYear = parseInt(document.getElementById('year').value);
+            currentMonth = parseInt(document.getElementById('month').value);
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            const calendarBody = document.getElementById('calendarBody');
+            const monthAndYear = document.getElementById('monthAndYear');
+
+            // Clear previous calendar
+            calendarBody.innerHTML = '';
+
+            // Set the header with the current month and year
+            monthAndYear.innerHTML = `${getMonthName(currentMonth)} ${currentYear}`;
+
+            // Get the first day of the month and the last day
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+
+            let date = new Date(firstDay);
+
+            // Create the calendar grid
+            while (date <= lastDay) {
+                const row = document.createElement('tr');
+
+                for (let i = 0; i < 7; i++) {
+                    const cell = document.createElement('td');
+                    cell.textContent = date.getDate();
+
+                    // Highlight today
+                    if (date.toDateString() === today.toDateString()) {
+                        cell.classList.add('bg-warning');
+                    }
+
+                    // Set the click event for each day
+                    cell.addEventListener('click', function () {
+                        showNoteInput(date);
+                    });
+
+                    row.appendChild(cell);
+                    date.setDate(date.getDate() + 1);
+                }
+
+                calendarBody.appendChild(row);
+            }
+        }
+
+        function getMonthName(month) {
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            return monthNames[month];
+        }
+
+        function showNoteInput(date) {
+            const noteDateInput = document.getElementById('noteDate');
+            const noteText = document.getElementById('noteText');
+
+            noteDateInput.value = date.toISOString().split('T')[0];
+            noteText.value = ''; // Clear previous notes
+
+            // You can implement loading saved notes here
+
+            // Display the note input container
+            document.querySelector('.note-container').style.display = 'block';
+        }
+
+        function saveNote() {
+            const noteDateInput = document.getElementById('noteDate');
+            const noteText = document.getElementById('noteText');
+
+            const dateKey = noteDateInput.value;
+            const note = noteText.value;
+
+            // You can implement saving notes to local storage or a server here
+            // For simplicity, we're just displaying an alert
+            alert(`Note saved for ${dateKey}: ${note}`);
+
+            // Clear the input fields
+            noteDateInput.value = '';
+            noteText.value = '';
+
+            // Hide the note input container
+            document.querySelector('.note-container').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
